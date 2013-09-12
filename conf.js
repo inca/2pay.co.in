@@ -1,0 +1,1 @@
+exports.mongoURL = "mongodb://localhost/2paycoin"
