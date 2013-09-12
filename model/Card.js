@@ -57,3 +57,5 @@ Card.methods.setNumber = function(){
   b.splice(0, 6);
   return this.number = b.join("");
 };
+
+module.exports = mongoose.model("Card", Card);
