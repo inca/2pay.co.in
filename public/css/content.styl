@@ -1,0 +1,138 @@
+em
+  color: #067
+
+// Common blocks
+
+p, h1, h2, h3, h4, h5, h6, ul, ol, li
+  margin: 1em 0
+
+h1
+  font-size:36px
+
+h2
+  font-size:28px
+  font-weight:normal
+  margin:24px 0
+
+h3
+  font-size:20px
+  font-weight:normal
+  color: #d46
+
+hr
+  border:0
+  border-bottom:1px solid #ddd
+  box-shadow:0 1px 0 #fff
+
+p, li
+  line-height: 1.5em
+
+.subtitle
+  color: #677
+  margin-top:-.75em
+
+// Tables
+
+table
+  margin:0
+  max-width:100%
+  border-spacing:0
+  border-collapse:collapse
+  tr.top th, tr.top td
+    vertical-align: top
+  tr.bottom th, tr.bottom td
+    vertical-align: bottom
+  tr.middle th, tr.middle td
+    vertical-align: middle
+  tr.left-align th, tr.left-align td
+    text-align: left
+  tr.right-align th, tr.right-align td
+    text-align: right
+  tr.centered th, tr.centered td
+    text-align: center
+  th, td
+    padding:8px 12px
+    text-align: left
+    &.left-align
+      text-align:left
+    &.right-align
+      text-align:right
+    &.centered
+      text-align:center
+    &.justify
+      text-align:justify
+    &.top
+      vertical-align: top
+    &.bottom
+      vertical-align: bottom
+    &.middle
+      vertical-align: middle
+    &.terse
+      width:32px
+      padding:0
+  th
+    font-size: 20px
+    font-weight: normal
+  tbody th
+    font-size: 16px
+    font-variant: normal
+    color:#707070
+  &.centered
+    margin-left:auto
+    margin-right:auto
+  &.rows
+    td, th
+      border-top: 1px solid #ddd
+      box-shadow: 0 1px 0 #fff inset
+    tr:first-child
+      td, th
+        border-top-width: 0
+        box-shadow: none
+    thead + tbody tr:first-child, tbody + tfoot tr:first-child
+      td, th
+        border-top-width: 1px
+        box-shadow: 0 1px 0 #fff inset
+  &.cols
+    td, th
+      border-right: 1px solid #ccc
+      &:last-child
+        border-right: 0
+  &.stripped
+    tbody tr:nth-child(2n + 1)
+      td, th
+        background: rgba(0,0,0,.025)
+  &.bordered
+    border-collapse: separate
+    border-radius:4px
+    border:1px solid #aaa
+    border-radius:4px
+  &.hover
+    tr:hover td
+      background:rgba(0,0,0,.035) !important
+  &.top
+    td, th
+      vertical-align: top
+  &.bottom
+    td, th
+      vertical-align: bottom
+  &.middle
+    td, th
+      vertical-align: middle
+  &.sorted
+    thead th.sorted
+      cursor: pointer
+      &::after
+        content:''
+        position:relative
+        display:inline-block
+        vertical-align:baseline
+        width:0
+        height:0
+        border:6px solid transparent
+        margin: 0 8px
+      &.asc::after
+        border-top-color:#999
+        top:4px
+      &.desc::after
+        border-bottom-color:#999
+        top:-4px

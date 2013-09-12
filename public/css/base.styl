@@ -1,0 +1,119 @@
+.hidden { display:none }
+.block { display:block }
+.inline-block { display:inline-block }
+
+// Alignment
+
+.centered { text-align:center }
+.left-align { text-align:left }
+.right-align { text-align:right }
+.justify { text-align:justify }
+.middle, .middle * { vertical-align:middle }
+
+// Positioning
+
+.clear { clear:both }
+.no-overflow { overflow:hidden }
+
+.left-float, .float-left { float:left }
+.right-float, .float-right { float:right }
+
+.no-margin { margin: 0 !important }
+.no-pad { padding: 0 !important }
+
+.relative { position:relative }
+
+// Bordering
+
+.border { border: 1px solid #ccc }
+.border-left { border-left: 1px solid #ccc }
+.border-right { border-right: 1px solid #ccc }
+.border-top { border-top: 1px solid #ccc }
+.border-bottom { border-bottom: 1px solid #ccc }
+
+// Fonts
+
+.sans
+  font-family: font-sans
+  font-weight: font-sans-weight
+
+.serif
+  font-family: font-serif
+  font-weight: font-serif-weight
+
+// Standard paddings and margins
+
+padsize = 16px
+
+.pad { padding:padsize }
+.pad-left { padding-left:padsize }
+.pad-right { padding-right:padsize }
+.pad-top { padding-top:padsize }
+.pad-bottom { padding-bottom:padsize }
+.pad-side { padding-left:padsize; padding-right:padsize }
+
+.margin { margin:padsize }
+.margin-left { margin-left:padsize }
+.margin-right { margin-right:padsize }
+.margin-top { margin-top:padsize }
+.margin-bottom { margin-bottom:padsize }
+.margin-side { margin-left:padsize; margin-right:padsize }
+
+// Mobiles specific
+
+@media screen and (max-width:480px)
+  .no-mobile-screen { display:none !important}
+
+@media screen and (min-width:481px)
+  .mobile-screen { display:none !important }
+
+@media screen and (max-width:768px)
+  .no-medium-screen { display:none !important }
+
+@media screen and (min-width:769px)
+  .medium-screen { display:none !important }
+
+@media screen and (max-width:960px)
+  .large-screen { display:none !important }
+
+@media screen and (min-width:961px)
+  .no-large-screen { display:none !important }
+
+// Glyphs
+
+i + span, span + i
+  margin-left: 8px
+
+// Scaffolding
+
+scaff-margin=2
+scaff-width=((100 - 11 * scaff-margin) / 12)
+
+.row
+  padding:0 !important
+  list-style: none outside !important
+  &::after
+    content:''
+    display:block
+    clear:both
+  > *
+    float:left
+    margin:0
+    margin-left:scaff-margin * 1%
+    width:scaff-width * 1%
+    &:first-child
+      margin-left:0
+  for n in (1..12)
+    .span-{n} { width: ((scaff-width * n) + (scaff-margin * (n - 1))) * 1% }
+
+@media screen and (max-width:768px)
+  .row:not(.mobile) > *
+    float:none
+    width:100% !important
+    margin:16px 0 !important
+
+@media screen and (max-width:480px)
+  .row.mobile > *
+    float:none
+    width:100% !important
+    margin:16px 0 !important
