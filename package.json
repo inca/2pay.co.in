@@ -10,6 +10,8 @@
     "jade": "*",
     "stylus": "*",
     "nib": "*",
-    "mongoose":"*"
+    "mongoose":"*",
+    "i18n-2": "*",
+    "moment":"*"
   }
 }

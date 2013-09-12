@@ -9,8 +9,7 @@ html
   body
     #header
       a.brand(href='/index.html')
-        span 2pay.co.in
-        //img(src='/img/logo.png', alt='2pay.co.in')
+        img(src='/img/logo.png', alt='2pay.co.in')
       .nav
         if (user)
           .merchant-nav
@@ -18,8 +17,7 @@ html
           .user-nav
             span #{user.name}
         else
-          a(href="/singup")
-            | Регистрация
+          a(href="/singup")= __("Регистрация ")
           a(href="/singin")
             | Вход
     #content

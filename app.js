@@ -1,7 +1,11 @@
 var express = require('express')
   , http = require('http')
   , stylus = require('stylus')
-  , nib = require('nib');
+  , nib = require('nib')
+  , I18n = require('i18n-2')
+  , utils= require('./utils')
+  , moment = require('moment')
+  , conf = require("./conf");
 
 var port = process.env.PORT || 3003;
 var publicPath = __dirname + '/public';
@@ -12,6 +16,10 @@ app.set('view engine', 'jade');
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+I18n.expressBind(app, {
+  locales: ['ru'],
+  extension: ".json"
+});
 app.use(app.router);
 app.use(stylus.middleware({
   src: publicPath,
@@ -27,7 +35,6 @@ app.use(express.static(publicPath));
 if (app.get('env') == 'development') {
   app.use(express.errorHandler());
 }
-
 require('./routes');
 
 http.createServer(app).listen(port, function() {
