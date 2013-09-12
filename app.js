@@ -3,7 +3,7 @@ var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib');
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3003;
 var publicPath = __dirname + '/public';
 var app = module.exports = exports = express();
 
