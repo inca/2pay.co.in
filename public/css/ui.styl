@@ -1,3 +1,5 @@
+@import 'nib'
+
 .paper
   background: #f5f5f5
   box-shadow: 0 1px 3px rgba(0,0,0,.75), 0 0 64px rgba(0,0,0,.1) inset
@@ -30,3 +32,333 @@
   i { opacity: .75 }
   i + span
     margin-left: 8px
+
+.loading
+  min-height:32px
+  background:url(/img/ui/loading.gif) center center no-repeat
+
+// Table-based grids
+
+table.grid
+  td, th
+    padding:0
+    &.sep
+      background: #f5f5f5
+
+// Elements
+
+.dropdown
+  position:absolute
+  top:100%
+  left:0
+  z-index:20
+  display:none
+  width:216px
+  margin-top:2px
+  background:rgba(255,255,255,.95)
+  border-radius:6px
+  box-shadow:0 1px 5px rgba(0,0,0,.25)
+  &.wider
+    width:296px
+  &.right
+    left:auto
+    right:0
+  a, .title, .subtitle
+    display:block
+    padding:8px
+  .subtitle
+    padding:0 8px
+  .title
+    line-height:32px
+    font-size:20px
+    white-space:nowrap
+  .sub
+    background:#ddd
+    color:#444
+  a
+    display:block
+    text-decoration:none
+    overflow:hidden
+    white-space: nowrap
+    text-overflow:ellipsis
+    &:hover
+      background:rgba(0,0,0,.025)
+    &.active
+      background:#f5f5f5
+      color:#555
+      box-shadow: 0 25px 3px -24px rgba(0,0,0,.2) inset,
+        0 -23px 3px -24px rgba(0,0,0,.2) inset
+  i
+    display:inline-block !important
+    color:#555
+    text-align:center
+    width:24px
+  hr
+    margin:0
+    border-bottom:1px dashed #ddd
+
+.ctl-row
+  position:relative
+  margin-bottom:12px
+  label
+    line-height:24px
+    display:block
+    text-align:left
+
+.ctl-grid
+  display:table
+  &.wide
+    width:100%
+  > .cell
+    display:table-cell
+    vertical-align:top
+    position:relative
+  > .cell + .cell
+    padding-left:8px
+  label
+    line-height:24px
+  &.baseline > .cell, .cell.baseline
+    vertical-align:baseline
+  &.middle > .cell, .cell.middle
+    vertical-align:middle
+
+@media screen and (max-width:480px)
+  .ctl-grid, .ctl-grid > .cell, .ctl-grid > .cell + .cell
+    display:block
+    padding:0
+    margin-bottom:12px
+
+input.btn, button.btn
+  appearance:none
+  -moz-appearance:none
+  -webkit-appearance:none
+  box-sizing:content-box
+
+.btn, a.btn
+  position:relative
+  display:inline-block
+  font-size:font-size
+  font-family:font-sans
+  text-align:center
+  text-decoration: none !important
+  cursor:pointer
+  min-width:16px
+  white-space:nowrap
+  height:32px
+  line-height:32px
+  padding:0 12px
+  margin:0 4px
+  box-shadow: 0 1px 1px rgba(255,255,255,.4) inset,
+    0 1px 3px rgba(0,0,0,.2)
+  border:1px solid #ccc
+  border-bottom: 1px solid #aaa
+  color:#444
+  border-radius:4px
+  background: linear-gradient(top, #fff, #eee)
+  &.large
+    font-size:(font-size + 2)
+    padding:0 20px
+    height:40px
+    line-height:40px
+
+.primary, .btn.primary
+  background:linear-gradient(top, primary-upper, primary-lower)
+  border-color: primary-lower
+  border-bottom-color: darken(primary-lower, 50%)
+  color:primary-color
+  text-shadow: 0 1px 1px rgba(0,0,0,.5)
+
+.danger, .btn.danger
+  background:linear-gradient(top, danger-upper, danger-lower)
+  border-color: danger-lower
+  border-bottom-color: darken(danger-lower, 50%)
+  color:danger-color
+  text-shadow: 0 1px 1px rgba(0,0,0,.5)
+
+.btn-group
+  display:inline-block
+  .btn
+    margin-right:0
+    margin-left:-1px !important
+    border-radius:0
+    box-shadow: 1px 1px 1px rgba(255,255,255,.6) inset,
+      0 1px 3px rgba(0,0,0,.2)
+    &:first-child
+      border-top-left-radius:4px
+      border-bottom-left-radius:4px
+    &:last-child
+      border-top-right-radius:4px
+      border-bottom-right-radius:4px
+
+.btn-group + .btn, .btn-group + .btn-group, .btn + .btn
+  margin-left: 8px
+
+.btn-panel
+  .btn, .btn-group
+    vertical-align:middle
+
+// Inputs
+
+
+
+input[type="checkbox"],
+input[type="radio"]
+  font-size:20px
+
+input.field, textarea.field
+  display:block
+  width:100%
+  box-sizing:border-box
+  border:1px solid #ddd
+  border-radius: 2px
+  padding:6px
+  margin:0
+  outline: 0
+  box-shadow: 0 1px 5px rgba(0,0,0,.1) inset,
+    0 1px 1px rgba(255,255,255,.5)
+  background: #fff
+  line-height:20px
+  -webkit-appearance:none
+  -moz-appearance:none
+  appearance:none
+  &:focus
+    box-shadow: 0 1px 3px rgba(0,0,0,.1) inset,
+      0 0 8px rgba(primary-upper, 50%)
+    border-color:primary-upper
+  &.hollow
+    background:transparent
+    border:0
+    box-shadow:none
+    resize:none
+  &.shade
+    background:rgba(96,48,0,.3)
+    box-shadow: 0 1px 3px rgba(0,0,0,.4) inset,
+      0 1px 1px rgba(255,255,255,.25)
+    border:none
+    color:#fff
+    text-shadow: 0 1px 1px #000,
+      0 0 8px rgba(0,0,0,.4)
+    &:focus
+      background:rgba(96,48,0,.3)
+      box-shadow: 0 1px 3px rgba(64,24,0,.33) inset,
+        0 -1px 16px rgba(64,24,0,.33) inset,
+        0 1px 1px rgba(255,255,255,.25)
+    &:input:-webkit-autofill
+      text-shadow:none
+    &::-webkit-input-placeholder
+      color:#444
+      text-shadow:0 1px 1px rgba(255,255,255,.5)
+    &::-moz-placeholder
+      color:#444
+      text-shadow:0 1px 1px rgba(255,255,255,.5)
+    &::-ie-input-placeholder
+      color:#444
+      text-shadow:0 1px 1px rgba(255,255,255,.5)
+
+input.field
+  font-family: font-sans
+  font-size: font-size
+  &.large
+    font-size:28px
+
+textarea.field
+  font-family: font-mono
+  font-size: 14px
+
+label.descr-left,
+label.descr-right
+  display:block
+  line-height:16px
+  padding: 8px
+
+label.descr-left
+  text-align:left
+
+label.descr-right
+  text-align:right
+
+label.error
+  position:relative
+  display:block
+  background: rgba(0,0,0,.6)
+  color: #fff
+  text-shadow: 0 1px 1px #000
+  font-size:14px
+  padding:6px 12px
+  border-radius: radius
+  margin-top:8px
+  border: 2px solid #444
+  &::after
+    content:''
+    display:block
+    position:absolute
+    top:-14px
+    left:16px
+    border: 6px solid transparent
+    border-bottom-color:#444
+
+// Remote fragments blur when loading is performed
+
+.remote-fragment
+  &.process
+    -webkit-filter: blur(4px)
+    -moz-filter: blur(4px)
+    -o-filter: blur(4px)
+    filter: blur(4px)
+
+// Glyphs
+
+i { opacity:.75 }
+i + span, span + i
+  margin-left: 8px
+i.smooth
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
+
+img.icon, canvas.icon
+  position:relative
+  vertical-align:middle
+  width:24px
+  height:24px
+  top:-2px
+
+span + .icon, .icon + span
+  margin-left:6px
+
+.icon-large
+  font-size:3em
+  text-align:center
+  display:block
+  padding-top:16px
+
+.icon-white
+  color:#fff
+
+// Standards
+
+a.noline
+  text-decoration:none
+
+.nowrap
+  white-space:nowrap
+
+.white, a.white
+  color:#fff
+  text-shadow:0 1px 1px rgba(0,0,0,.75)
+  a
+    color: #fafaf5
+    text-shadow:0 1px 1px rgba(0,0,0,.75)
+
+.black, a.black
+  color:#555
+  text-shadow:0 1px 1px rgba(255,255,255,.4)
+  a
+    color:#222
+    text-shadow:0 1px 1px rgba(255,255,255,.4)
+
+.color-danger, a.color-danger
+  color: danger-upper
+
+.perspective
+  perspective: 1000
+  transform-style: preserve-3d

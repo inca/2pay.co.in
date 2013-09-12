@@ -23,7 +23,9 @@ I18n.expressBind(app, {
   locales: ['ru'],
   extension: ".json"
 });
+
 app.use(app.router);
+
 app.use(stylus.middleware({
   src: publicPath,
   compile: function(str, path) {
@@ -33,12 +35,14 @@ app.use(stylus.middleware({
       .use(nib());
   }
 }));
+
 app.use(express.static(publicPath));
 
 if (app.get('env') == 'development') {
   app.use(express.errorHandler());
 }
-require('./routes');
+require('./routes/index');
+require('./routes/auth');
 
 http.createServer(app).listen(port, function() {
   console.log('Server is listening on ' + port);
