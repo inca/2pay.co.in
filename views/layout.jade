@@ -17,13 +17,16 @@ html
           .user-nav
             span #{user.name}
         else
-          a(href="/singup")= __("Регистрация ")
-          a(href="/singin")
-            | Вход
+          a(href="/singup")= __("Registration")
+          a(href="/singin")= __("Login")
     #content
-      #sidenav
-        block sidenav
-      #main
-        block main
+      if (user)
+        #sidenav
+          block sidenav
+        #main
+          block main
+      else
+        #main-not-login
+          block main
     #footer
       p 2012—2013 &copy; <a href='http://2pay.co.in'>2pay.co.in</a>

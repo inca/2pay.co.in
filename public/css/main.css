@@ -112,7 +112,7 @@ body{font-family:Helvetica Neue,Segoe UI,Arial,sans-serif;font-size:16px;line-he
 #header{position:relative;line-height:40px;}
 #header::after{content:'';display:table;clear:both}
 #header .brand{width:192px;display:inline-block;text-align:center;}
-#header .brand img{vertical-align:middle}
+#header .brand img{position:relative;vertical-align:middle;top:-2px}
 #header .nav{display:inline-block}
 #header .nav > a{position:relative;display:inline-block;color:#aaa;text-shadow:0 1px 1px #000;padding:0 16px;margin:0 8px;text-align:center;text-decoration:none;}
 #header .nav > a:hover{color:#fff}
@@ -126,6 +126,7 @@ body{font-family:Helvetica Neue,Segoe UI,Arial,sans-serif;font-size:16px;line-he
 #sidenav a:hover,#sidenav a.active{color:#fff}
 #sidenav a.active{color:#fff;text-shadow:0 0 1px #aad0de,0 0 16px #aad0de}
 #main{margin-left:192px;padding:16px}
+#main-not-login{padding:16px}
 @media screen and (max-width:768px){#sidenav{float:none;text-align:center;width:auto;}
 #sidenav a{display:inline-block}
 #main{margin-left:0}

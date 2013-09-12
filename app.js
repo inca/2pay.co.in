@@ -5,11 +5,14 @@ var express = require('express')
   , I18n = require('i18n-2')
   , utils= require('./utils')
   , moment = require('moment')
-  , conf = require("./conf");
+  , conf = require("./conf")
+  , mongoose = require("mongoose");
 
 var port = process.env.PORT || 3003;
 var publicPath = __dirname + '/public';
 var app = module.exports = exports = express();
+
+mongoose.connect(conf.mongoURL);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');

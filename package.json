@@ -12,6 +12,7 @@
     "nib": "*",
     "mongoose":"*",
     "i18n-2": "*",
-    "moment":"*"
+    "moment":"*",
+    "password-generator":"*"
   }
 }
