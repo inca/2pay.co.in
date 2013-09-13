@@ -13,6 +13,8 @@
     "mongoose":"*",
     "i18n-2": "*",
     "moment":"*",
-    "password-generator":"*"
+    "underscore": "*",
+    "password-generator":"*",
+    "async":"*"
   }
 }

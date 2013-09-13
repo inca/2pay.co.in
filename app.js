@@ -6,7 +6,12 @@ var express = require('express')
   , utils= require('./utils')
   , moment = require('moment')
   , conf = require("./conf")
-  , mongoose = require("mongoose");
+  , mongoose = require("mongoose")
+  , User = require('./model/user')
+  , Merchant = require('./model/merchant')
+  , Card = require('./model/card')
+  , async = require("async")
+  , _ = require('underscore');
 
 var port = process.env.PORT || 3003;
 var publicPath = __dirname + '/public';
@@ -16,12 +21,79 @@ mongoose.connect(conf.mongoURL);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.locals.basedir = __dirname + '/views';
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+
+app.use(express.cookieParser('bionicman'));
+app.use(express.session({
+  key: 'sid',
+  secret: 'bionicman'
+}));
+
+
+
+app.use(function(req, res, next){
+
+  req.login = function(user){
+    req.session.userId = user.id;
+  };
+
+  req.logout = function(){
+    delete req.session.userId;
+  };
+
+  if (req.session.userId) {
+    async.waterfall([
+      function(callback){
+        User.findById(req.session.userId).exec(function(err, user){
+          if (err) next(err);
+          req.user = user;
+          callback();
+        });
+      },
+      function(callback){
+        Merchant.find({user:req.user._id}).exec(function(err, merchants){
+          if (err) next(err);
+          req.merchants = merchants;
+          callback();
+        });
+      },
+      function(callback){
+        req.cards = [];
+        async.each(req.merchants, function(merchant, cb){
+          Card.find({merchant:merchant._id}).exec(function(err, card){
+            req.cards.push(card);
+            _.flatten(req.cards);
+            cb();
+          });
+        }, function(err){
+          if(err) next(err);
+          callback();
+        });
+      }
+    ], function (err) {
+      next();
+    });
+
+  } else {
+    next();
+  }
+});
+
 I18n.expressBind(app, {
   locales: ['ru'],
   extension: ".json"
+});
+
+app.use(function(req, res, next){
+  _.extend(res.locals, {
+    user: req.user,
+    merchants: req.merchants,
+    cards: req.cards
+  });
+  next();
 });
 
 app.use(app.router);

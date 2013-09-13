@@ -1,13 +1,13 @@
 'use strict';
 
 var mongoose = require("mongoose")
-  , conf = require("./conf")
+  , conf = require("../conf")
   , genPass = require("password-generator");
 
 var Card = mongoose.Schema({
   merchant: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: Merchant
+    ref: 'Merchant'
   },
   issuer: {
     type:String,
@@ -20,22 +20,30 @@ var Card = mongoose.Schema({
   },
   currency: {
     type: String,
-    enum: conf.currency
+    enum: conf.currency,
+    default:"RUB"
   },
   expires: {
     month: {
       type: Number,
       min: 1,
-      max: 12
+      max: 12,
+      default:12
     },
     year: {
       type: Number,
       min: new Date().getFullYear(),
-      max: new Date().getFullYear() + 4
+      max: new Date().getFullYear() + 4,
+      default: new Date().getFullYear() + 4
     }
   },
   cvc: Number
+
 });
+
+Card.methods.setCVC = function(){
+  return this.cvc = genPass(3, false, /\d/)
+};
 
 Card.methods.setNumber = function(){
   var a = genPass(9, false, /\d/).split('');

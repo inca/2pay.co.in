@@ -1,7 +1,6 @@
 'use strict';
 
-var app = require('../app')
-  , genPass = require("password-generator");
+var app = require('../app');
 
 app.get('/', function(req, res) {
   res.render('index');

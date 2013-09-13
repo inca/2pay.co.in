@@ -7,15 +7,21 @@ html
     script(src='/js/jquery-2.0.3.min.js')
     script(src='/js/scalpel-0.2.1.min.js')
   body
+    #notices
+      each notice in notices.get()
+        div(class="notice #{notice.kind}")= notice.msg
+
     #header
       a.brand(href='/index.html')
         img(src='/img/logo.png', alt='2pay.co.in')
       .nav
         if (user)
-          .merchant-nav
-            span #{merchant.title}
-          .user-nav
+          a#user-nav.active
+            i.icon-user.smooth
             span #{user.name}
+          a#merchant-nav
+            i.icon-building.smooth
+            span #{merchants[0].title}
         else
           a(href="/registration")= __("Registration")
           a(href="/login")= __("Login")
@@ -28,5 +34,6 @@ html
       else
         #main-not-login
           block main
+
     #footer
       p 2012—2013 &copy; <a href='http://2pay.co.in'>2pay.co.in</a>
