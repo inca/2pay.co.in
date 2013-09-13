@@ -32,8 +32,7 @@ app.use(express.session({
   secret: 'bionicman'
 }));
 
-
-
+// Authentication
 app.use(function(req, res, next){
 
   req.login = function(user){
@@ -91,10 +90,14 @@ app.use(function(req, res, next){
   _.extend(res.locals, {
     user: req.user,
     merchants: req.merchants,
-    cards: req.cards
+    cards: req.cards,
+    xhr: req.xhr
   });
   next();
 });
+
+// Notices
+app.use(require('./notices'));
 
 app.use(app.router);
 

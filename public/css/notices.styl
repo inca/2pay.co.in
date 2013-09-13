@@ -1,0 +1,34 @@
+#notices
+  z-index:100
+
+  .notice
+    position:relative
+    padding:8px 12px
+    margin:8px
+    background: rgba(0,0,0,.8)
+    color: #fff
+    border-radius:6px
+    &::before
+      display:inline-block
+      margin-right:8px
+    &.info::before
+      content:"\f00c"
+      font-family: FontAwesome
+      color: primary-upper
+    &.warn::before
+      content:"\f06a"
+      font-family: FontAwesome
+    &.error::before
+      content:"\f00d"
+      font-family: FontAwesome
+      color: danger-upper
+
+
+@media screen and (min-width:256px)
+
+  #notices
+    position:fixed
+    right:0
+    bottom:0
+    width:50%
+

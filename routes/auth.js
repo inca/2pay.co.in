@@ -51,13 +51,17 @@ app.post('/login', function(req, res, next){
   User.findOne({email:ue}).exec(function(err, user){
     if (err) next(err);
 
-    if (user != null){
-      if (up == user.password){
-        req.session.userId = user._id;
-        console.log(req.session.userId);
-      }
-    } // todo вкрутить нотисы и редиректить обратно на форму
-  res.redirect("/");
+    if (user && up == user.password) {
+      req.login(user);
+      res.json({
+        redirect: "/"
+      });
+    } else {
+      return res.json({
+        notices: res.notices.error("Email or password is invalid").get()
+      });
+    }
+
   })
 });
 

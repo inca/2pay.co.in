@@ -3,7 +3,7 @@ extends ../layout
 block main
   .frame
     .paper.pad
-      form(method="post", action="/login")
+      form.partial(method="post", action="/login")
         .row
           .span-1
             i.icon-user.icon-large

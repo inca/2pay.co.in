@@ -9,4 +9,8 @@ var User = mongoose.Schema({
   }
 );
 
+User.methods.checkPassword = function(passwd) {
+  return this.password == passwd;
+};
+
 module.exports = mongoose.model('User', User);

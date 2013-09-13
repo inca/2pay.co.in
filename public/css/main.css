@@ -1,4 +1,11 @@
-.hidden{display:none}
+#notices{z-index:100;}
+#notices .notice{position:relative;padding:8px 12px;margin:8px;background:rgba(0,0,0,0.8);color:#fff;border-radius:6px;}
+#notices .notice::before{display:inline-block;margin-right:8px}
+#notices .notice.info::before{content:"\f00c";font-family:FontAwesome;color:#3ae}
+#notices .notice.warn::before{content:"\f06a";font-family:FontAwesome}
+#notices .notice.error::before{content:"\f00d";font-family:FontAwesome;color:#c33}
+@media screen and (min-width:256px){#notices{position:fixed;right:0;bottom:0;width:50%}
+}.hidden{display:none}
 .block{display:block}
 .inline-block{display:inline-block}
 .centered{text-align:center}

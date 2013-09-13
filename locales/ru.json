@@ -1,5 +1,8 @@
 {
 	"Registration": "Registration",
 	"Login": "Login",
-	"title": "title"
+	"title": "title",
+	"Email is invalid": "Email is invalid",
+	"Email or password is invalid": "Email or password is invalid",
+	"Email or password is invalid11": "Email or password is invalid11"
 }
