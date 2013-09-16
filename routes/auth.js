@@ -6,7 +6,7 @@ var app = require('../app')
   , Card = require('../model/card');
 
 app.get('/signup', function(req, res, next){
-  res.render('pages/signup')
+  res.render('auth/signup')
 });
 
 app.post('/signup', function(req, res, next){
@@ -42,7 +42,7 @@ app.post('/signup', function(req, res, next){
 });
 
 app.get('/login', function(req, res, next){
-  res.render('pages/login')
+  res.render('auth/login')
 });
 
 app.post('/login', function(req, res, next){

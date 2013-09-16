@@ -9,5 +9,14 @@
 	"Logout": "Logout",
 	"Sign up now": "Sign up now",
 	" or ": " or ",
-	"login": "login"
+	"login": "login",
+	"Номер карты:": "Номер карты:",
+	"Валюта:": "Валюта:",
+	"Баланс:": "Баланс:",
+	"Действительна до:": "Действительна до:",
+	"CVC:": "CVC:",
+	"Добавить карту": "Добавить карту",
+	"or": "or",
+	"Create card": "Create card",
+	"Delete card": "Delete card"
 }

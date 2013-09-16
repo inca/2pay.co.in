@@ -66,4 +66,8 @@ Card.methods.setNumber = function(){
   return this.number = b.join("");
 };
 
+Card.methods.expiredDate = function(){
+  return new Date(this.expires.year, this.expires.month-1);
+};
+
 module.exports = mongoose.model("Card", Card);

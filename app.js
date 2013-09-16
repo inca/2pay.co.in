@@ -56,22 +56,10 @@ app.use(function(req, res, next){
         Merchant.find({user:req.user._id}).exec(function(err, merchants){
           if (err) next(err);
           req.merchants = merchants;
+          req.session.curMerchant = merchants[0];
           callback();
         });
-      },
-//      function(callback){
-//        req.cards = [];
-//        async.each(req.merchants, function(merchant, cb){
-//          Card.find({merchant:merchant._id}).exec(function(err, card){
-//            req.cards.push(card);
-//            _.flatten(req.cards);
-//            cb();
-//          });
-//        }, function(err){
-//          if(err) next(err);
-//          callback();
-//        });
-//      }
+      }
     ], function (err) {
       next();
     });
@@ -90,7 +78,7 @@ app.use(function(req, res, next){
   _.extend(res.locals, {
     user: req.user,
     merchants: req.merchants,
-    cards: req.cards,
+    curMerchant: req.session.curMerchant,
     xhr: req.xhr
   });
   next();
