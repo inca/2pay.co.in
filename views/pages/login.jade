@@ -1,10 +1,12 @@
 extends ../layout
 
 block main
-  .frame
+  .frame(data-ref="#login")
     .paper.pad
       form.partial(method="post", action="/login")
         .row
+          .span-3
+            &nbsp
           .span-1
             i.icon-user.icon-large
           .span-5.pad-bottom
@@ -12,4 +14,6 @@ block main
             input.field(type="text", name="ue", id="ue")
             label.descr-left(for="up") Введите пароль
             input.field(type="password", name="up", id="up")
-        button.btn.centered-block(type="submit") Войти в систему
+
+        p.centered
+          button.btn.primary.large(type="submit") Войти в систему

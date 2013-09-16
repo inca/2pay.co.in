@@ -1,9 +1,35 @@
 extends layout
-
 block main
   .frame
-    .paper
-      .pad
-        h1= __('title')
-        p Welcome to #{title}
-        p #{cards} some
+    .paper.pad
+      .row
+        .span-1.hack-height
+        .span-5
+          .hero
+            h1 2pay.co.in
+            h2 Тестовый платежный шлюз
+            p.subtitle Ваш помощник в настройке любых платежных систем
+
+
+
+        .span-5
+          .hero
+            div
+              h2 Немного места
+              hr
+            div
+              p Отведено для того
+              hr
+            div
+              p Что бы можно было написать
+              hr
+            div
+              p Несколько преимуществ данной системы
+              hr
+
+        .span-1.hack-height
+      if (!user)
+        p.centered.kicker
+          a.btn.primary.large(href="/signup")= __("Sign up now")
+          span= __(' or ')
+          a(href="/login")= __("login")

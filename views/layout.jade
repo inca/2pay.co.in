@@ -15,23 +15,26 @@ else
           div(class="notice #{notice.kind}")= notice.msg
 
       #header
-        a.brand(href='/index.html')
+        a.brand(href='/')
           img(src='/img/logo.png', alt='2pay.co.in')
         .nav
           if (user)
-            a#user-nav.active
+            a#user-nav.active(href="/profile")
               i.icon-user.smooth
               span #{user.name}
             a#merchant-nav
               i.icon-building.smooth
               span #{merchants[0].title}
+            a#logout.float-right(href="/logout")
+              i.icon-power-off
+              span= __('Logout')
           else
-            a(href="/registration")= __("Registration")
-            a(href="/login")= __("Login")
+            a#singup(href="/signup")= __("Registration")
+            a#login(href="/login")= __("Login")
       #content
         if (user)
           #sidenav
-            block sidenav
+            include shared/sidebar.p.jade
           #main
             block main
         else

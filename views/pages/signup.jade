@@ -1,0 +1,27 @@
+extends ../layout
+
+block main
+  .frame(data-ref="#singup")
+    .paper.pad
+      form(method="post", action="/registration")
+        .row
+
+          .span-1
+            &nbsp;
+          .span-1
+            i.icon-user.icon-large
+          .span-4.pad-bottom
+            label.descr-left(for="un") Имя пользователя
+            input.field(type="text", name="un", id="un")
+            label.descr-left(for="up") Пароль
+            input.field(type="password", name="up", id="up")
+            label.descr-left(for="ue") Адрес электронной почты
+            input.field(type="email", name="ue", id="ue")
+          .span-1
+            i.icon-building.icon-large
+          .span-4.pad-bottom
+            label.descr-left(for="mt") Название компании продавца
+            input.field(type="text", name="mt", id="mt")
+
+        p.centered
+          button.btn.primary.large(type="submit") Регистрация

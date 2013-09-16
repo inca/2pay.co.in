@@ -6,6 +6,12 @@ html, body, form, fieldset, img
 a, a:hover, a:visited
   color: #3ca9ee
 
+.row
+  .span-1
+    &.hack-height
+      height: 1px
+      margin:0 !important
+
 body
   font-family: Helvetica Neue, Segoe UI, Arial, sans-serif;
   font-size: 16px
@@ -24,12 +30,14 @@ body
     width:192px
     display:inline-block
     text-align:center
+    float:left
     img
       position:relative
       vertical-align:middle
       top: -2px
   .nav
-    display:inline-block
+    display:block
+    margin-left:192px
   .nav > a
     position:relative
     display:inline-block
@@ -83,6 +91,13 @@ body
     &.active
       color: #fff
       text-shadow: 0 0 1px #aad0de, 0 0 16px #aad0de
+    &.bot-line
+      &:after
+        content:""
+        position: relative;
+        display: block;
+        border-bottom: 1px solid #888;
+        top:6px
 
 #main
   margin-left: 192px
@@ -109,4 +124,6 @@ body
   a
     color: #eee
     text-decoration:none
+
+
 

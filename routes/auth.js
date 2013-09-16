@@ -5,11 +5,11 @@ var app = require('../app')
   , Merchant = require('../model/merchant')
   , Card = require('../model/card');
 
-app.get('/registration', function(req, res, next){
-  res.render('pages/registration')
+app.get('/signup', function(req, res, next){
+  res.render('pages/signup')
 });
 
-app.post('/registration', function(req, res, next){
+app.post('/signup', function(req, res, next){
   var un = req.param("un");
   var up = req.param("up");
   var ue = req.param("ue");
