@@ -2,33 +2,37 @@
 
 var mongoose = require("mongoose")
   , conf = require("../conf")
-  , genPass = require("password-generator");
+  , utils = require("../utils");
 
 var Card = mongoose.Schema({
+
   merchant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Merchant'
   },
+
   issuer: {
-    type:String,
-    default: 400000
-  },
-  number: String,
-  balance: {
-    type: Number,
-    default: 0
-  },
-  currency: {
     type: String,
-    enum: conf.currency,
-    default:"RUB"
+    default: '400000',
+    enum: ['400000', '500000']
   },
+
+  number: {
+    type: String,
+    required: true
+  },
+
+  cvc: {
+    type: String,
+    required: true
+  },
+
   expires: {
     month: {
       type: Number,
       min: 1,
       max: 12,
-      default:12
+      default: 12
     },
     year: {
       type: Number,
@@ -37,37 +41,40 @@ var Card = mongoose.Schema({
       default: new Date().getFullYear() + 4
     }
   },
-  cvc: Number
+
+  balance: {
+    type: Number,
+    default: 0
+  },
+
+  currency: {
+    type: String,
+    enum: conf.currency,
+    default: "RUB"
+  }
 
 });
 
-Card.methods.setCVC = function(){
-  return this.cvc = genPass(3, false, /\d/)
-};
-
-Card.methods.setNumber = function(){
-  var a = genPass(9, false, /\d/).split('');
-  var num = this.issuer.split('');
-  var b = num.concat(a);
-  console.log(b);
+Card.pre('save', function(next) {
+  if (this.cvc && this.number) return next();
+  this.cvc = utils.randomNumber(3);
+  var num = this.issuer + utils.randomNumber(9);
   var sum = 0;
-  for (var i= 0; i< b.length; i++){
-    if (i%2 == 0){
-      var p = b[i] * 2;
-      if (p > 9) {
+  for (var i = 0; i < num.length; i++) {
+    if (i % 2 == 0) {
+      var p = parseInt(num[i]) * 2;
+      if (p > 9)
         p -= 9;
-      }
       sum += p;
     }
   }
-  var end_number = 10 - (sum % 10).toString();
-  b = b.concat(end_number);
-  b.splice(0, 6);
-  return this.number = b.join("");
-};
+  num += (10 - (sum % 10)).toString();
+  this.number = num;
+  next();
+});
 
-Card.methods.expiredDate = function(){
-  return new Date(this.expires.year, this.expires.month-1);
+Card.methods.expiredDate = function() {
+  return new Date(this.expires.year, this.expires.month - 1);
 };
 
 module.exports = mongoose.model("Card", Card);

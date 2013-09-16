@@ -3,25 +3,32 @@ extends ../layout
 block main
   .frame(data-ref="#singup")
     .paper.pad
-      form(method="post", action="/registration")
+      form(method="post", action="/signup")
         .row
-
           .span-1
             &nbsp;
           .span-1
             i.icon-user.icon-large
           .span-4.pad-bottom
-            label.descr-left(for="un") Имя пользователя
-            input.field(type="text", name="un", id="un")
-            label.descr-left(for="up") Пароль
-            input.field(type="password", name="up", id="up")
-            label.descr-left(for="ue") Адрес электронной почты
-            input.field(type="email", name="ue", id="ue")
+            .ctl-row
+              label
+                span Имя пользователя
+                input.field(type="text", name="user-name")
+            .ctl-row
+              label
+                span Пароль
+                input.field(type="password", name="user[password]")
+            .ctl-row
+              label
+                span Адрес электронной почты
+                input.field(type="email", name="user[email]")
           .span-1
             i.icon-building.icon-large
           .span-4.pad-bottom
-            label.descr-left(for="mt") Название компании продавца
-            input.field(type="text", name="mt", id="mt")
+            .ctl-row
+              label
+                span Название компании продавца
+                input.field(type="text", name="merchant[title]")
 
         p.centered
           button.btn.primary.large(type="submit") Регистрация

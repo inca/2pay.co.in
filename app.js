@@ -32,12 +32,12 @@ app.use(express.session({
 // Authentication
 app.use(function(req, res, next) {
 
-  req.login = function(user){
+  req.login = function(user) {
     req.session.userId = user.id;
   };
 
-  req.logout = function(){
-    delete req.session.userId;
+  req.logout = function() {
+    req.session.destroy();
   };
 
   if (req.session.userId) {
@@ -69,7 +69,7 @@ I18n.expressBind(app, {
   extension: ".json"
 });
 
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
   _.extend(res.locals, utils, {
     user: req.user,
     merchant: req.merchant,
