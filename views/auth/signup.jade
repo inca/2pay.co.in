@@ -1,15 +1,13 @@
 extends ../layout
 
-block main
-  .frame(data-ref="#singup")
+block form
+  .frame
     .paper.pad
       form.partial.validate(method="post", action="/signup")
         .row
-          .span-1
-            &nbsp;
-          .span-1
+          .span-3.no-mobile-screen
             i.icon-user.icon-large
-          .span-4.pad-bottom
+          .span-9
             .ctl-row
               label
                 span Имя пользователя
@@ -32,9 +30,11 @@ block main
                 input.field(
                 type="email",
                 name="user[email]")
-          .span-1
+        hr
+        .row
+          .span-3.no-mobile-screen
             i.icon-building.icon-large
-          .span-4.pad-bottom
+          .span-9
             .ctl-row
               label
                 span Название компании продавца
@@ -45,3 +45,10 @@ block main
 
         p.centered
           button.btn.primary.large(type="submit") Регистрация
+
+block main
+  .row.mobile(data-ref="#signup")
+    .span-3 &nbsp;
+    .span-6
+      block form
+    .span-3 &nbsp;
