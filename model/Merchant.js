@@ -1,21 +1,29 @@
 'use strict';
 
 var mongoose = require('mongoose')
-  , genPass = require('password-generator');
+  , utils = require('../utils');
 
 var Merchant = mongoose.Schema({
-    user:{
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
-    title: String,
-    url: String,
-    privateKey: String
+    title: {
+      type: String,
+      required: true
+    },
+    privateKey: String,
+    lastUsedAt: {
+      type: Date,
+      default: new Date()
+    }
   }
 );
 
-Merchant.methods.setPrivateKey = function(){
-  return this.privateKey = genPass(32, false);
-};
+Merchant.pre('save', function(next) {
+  if (!this.privateKey)
+    this.privateKey = utils.randomString(32);
+  next();
+});
 
 module.exports = mongoose.model("Merchant", Merchant);

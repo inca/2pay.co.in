@@ -2,8 +2,10 @@
 
 var crypto = require('crypto')
   , fs = require('fs')
-  , path = require('path')
-  , conf = require("./conf");
+  , path = require('path');
+
+var ALPHANUMERIC = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var NUMERIC = '0123456789';
 
 exports.sha256 = function(str) {
   var p = crypto.createHash('sha256');
@@ -21,4 +23,17 @@ exports.escapeHtml = function(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 };
 
+exports.randomString = function(length, alphabet) {
+  if (!length) length = 6;
+  if (!alphabet) alphabet = ALPHANUMERIC;
+  var result = '';
+  for (var i = 0; i < length; i++) {
+    var idx = Math.floor(Math.random() * alphabet.length);
+    result += alphabet[idx];
+  }
+  return result;
+};
 
+exports.randomNumber = function(length) {
+  return exports.randomString(length, NUMERIC);
+};

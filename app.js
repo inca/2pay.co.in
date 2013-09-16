@@ -1,23 +1,20 @@
+"use strict";
+
 var express = require('express')
   , http = require('http')
   , stylus = require('stylus')
   , nib = require('nib')
   , I18n = require('i18n-2')
-  , utils= require('./utils')
-  , moment = require('moment')
+  , utils = require('./utils')
   , conf = require("./conf")
   , mongoose = require("mongoose")
   , User = require('./model/user')
   , Merchant = require('./model/merchant')
-  , Card = require('./model/card')
-  , async = require("async")
   , _ = require('underscore');
 
 var port = process.env.PORT || 3003;
 var publicPath = __dirname + '/public';
 var app = module.exports = exports = express();
-
-mongoose.connect(conf.mongoURL);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -33,7 +30,7 @@ app.use(express.session({
 }));
 
 // Authentication
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
 
   req.login = function(user){
     req.session.userId = user.id;
@@ -44,29 +41,27 @@ app.use(function(req, res, next){
   };
 
   if (req.session.userId) {
-    async.waterfall([
-      function(callback){
-        User.findById(req.session.userId).exec(function(err, user){
-          if (err) next(err);
-          req.user = user;
-          callback();
-        });
-      },
-      function(callback){
-        Merchant.find({user:req.user._id}).exec(function(err, merchants){
-          if (err) next(err);
-          req.merchants = merchants;
-          req.session.curMerchant = merchants[0];
-          callback();
-        });
-      }
-    ], function (err) {
-      next();
-    });
+    User.findById(req.session.userId)
+      .exec(function(err, user) {
+        if (err) next(err);
+        req.user = user;
+        next();
+      });
+  } else next();
+});
 
-  } else {
-    next();
-  }
+// Fetch current merchant if set
+app.use(function(req, res, next) {
+
+  if (req.session.merchantId) {
+    Merchant.findById(req.session.merchantId)
+      .exec(function(err, merchant) {
+        if (err) next(err);
+        req.merchant = merchant;
+        next();
+      });
+  } else next();
+
 });
 
 I18n.expressBind(app, {
@@ -75,11 +70,11 @@ I18n.expressBind(app, {
 });
 
 app.use(function(req, res, next){
-  _.extend(res.locals, {
+  _.extend(res.locals, utils, {
     user: req.user,
-    merchants: req.merchants,
-    curMerchant: req.session.curMerchant,
-    xhr: req.xhr
+    merchant: req.merchant,
+    xhr: req.xhr,
+    _: _
   });
   next();
 });
@@ -104,9 +99,15 @@ app.use(express.static(publicPath));
 if (app.get('env') == 'development') {
   app.use(express.errorHandler());
 }
-require('./routes/index');
-require('./routes/auth');
 
-http.createServer(app).listen(port, function() {
-  console.log('Server is listening on ' + port);
+require('./routes/index');
+
+mongoose.connect(conf.mongoURL, function(err) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+  http.createServer(app).listen(port, function() {
+    console.log('Server is listening on ' + port);
+  });
 });

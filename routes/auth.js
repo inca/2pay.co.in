@@ -5,11 +5,11 @@ var app = require('../app')
   , Merchant = require('../model/merchant')
   , Card = require('../model/card');
 
-app.get('/signup', function(req, res, next){
+app.get('/signup', function(req, res, next) {
   res.render('auth/signup')
 });
 
-app.post('/signup', function(req, res, next){
+app.post('/signup', function(req, res, next) {
   var un = req.param("un");
   var up = req.param("up");
   var ue = req.param("ue");
@@ -19,14 +19,14 @@ app.post('/signup', function(req, res, next){
     password: up,
     email: ue
   });
-  user.save(function(err, user){
+  user.save(function(err, user) {
     if (err) next(err);
     var merchant = new Merchant({
       user: user._id,
       title: mt
     });
     merchant.setPrivateKey();
-    merchant.save(function(err, merchant){
+    merchant.save(function(err, merchant) {
       if (err) next(err);
       var card = new Card({
         merchant: merchant._id
@@ -41,14 +41,14 @@ app.post('/signup', function(req, res, next){
   })
 });
 
-app.get('/login', function(req, res, next){
+app.get('/login', function(req, res, next) {
   res.render('auth/login')
 });
 
-app.post('/login', function(req, res, next){
+app.post('/login', function(req, res, next) {
   var ue = req.param("ue");
   var up = req.param("up");
-  User.findOne({email:ue}).exec(function(err, user){
+  User.findOne({email:ue}).exec(function(err, user) {
     if (err) next(err);
 
     if (user && up == user.password) {
@@ -65,7 +65,7 @@ app.post('/login', function(req, res, next){
   })
 });
 
-app.get('/logout', function(req, res, next){
+app.get('/logout', function(req, res, next) {
   req.logout();
   res.redirect('/');
 });
