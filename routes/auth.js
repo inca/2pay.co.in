@@ -12,10 +12,10 @@ app.get('/signup', function(req, res, next) {
 });
 
 app.post('/signup', function(req, res, next) {
-  var user = new User(req.query.user);
+  var user = new User(req.body.user);
   user.save(function(err, user) {
     if (err) return next(err);
-    var merchant = new Merchant(req.query.merchant);
+    var merchant = new Merchant(req.body.merchant);
     merchant.user = user;
     merchant.save(function(err, merchant) {
       if (err) return next(err);
@@ -38,7 +38,7 @@ app.get('/login', function(req, res, next) {
 });
 
 app.post('/login', function(req, res, next) {
-  User.findOne(req.query.user)
+  User.findOne(req.body.user)
     .exec(function(err, user) {
       if (err) next(err);
       if (user && up == user.password) {

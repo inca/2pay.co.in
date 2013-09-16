@@ -17,15 +17,9 @@ var Card = mongoose.Schema({
     enum: ['400000', '500000']
   },
 
-  number: {
-    type: String,
-    required: true
-  },
+  number: String,
 
-  cvc: {
-    type: String,
-    required: true
-  },
+  cvc: String,
 
   expires: {
     month: {

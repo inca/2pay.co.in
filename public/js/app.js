@@ -1,5 +1,9 @@
-$.scalpel.queue[".expired-date"] = function(){
-  var date = $(this).text();
-  var formatDate = moment(date).format("MMMM YYYY");
-  $(this).text(formatDate);
+"use strict";
+
+$.scalpel.queue['form.validate'] = function() {
+  var form = $(this);
+  this.handlers.push(function() {
+    form.validate();
+    return form.valid();
+  });
 };

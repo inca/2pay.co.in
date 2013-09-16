@@ -3,7 +3,7 @@ extends ../layout
 block main
   .frame(data-ref="#singup")
     .paper.pad
-      form(method="post", action="/signup")
+      form.partial.validate(method="post", action="/signup")
         .row
           .span-1
             &nbsp;
@@ -13,22 +13,35 @@ block main
             .ctl-row
               label
                 span Имя пользователя
-                input.field(type="text", name="user-name")
+                input.field(
+                type="text",
+                name="user[name]",
+                required='required',
+                minlength='4')
             .ctl-row
               label
                 span Пароль
-                input.field(type="password", name="user[password]")
+                input.field(
+                type="password",
+                name="user[password]",
+                required='required',
+                minlength='8')
             .ctl-row
               label
                 span Адрес электронной почты
-                input.field(type="email", name="user[email]")
+                input.field(
+                type="email",
+                name="user[email]")
           .span-1
             i.icon-building.icon-large
           .span-4.pad-bottom
             .ctl-row
               label
                 span Название компании продавца
-                input.field(type="text", name="merchant[title]")
+                input.field(
+                type="text",
+                name="merchant[title]",
+                required='required')
 
         p.centered
           button.btn.primary.large(type="submit") Регистрация

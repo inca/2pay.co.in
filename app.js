@@ -8,6 +8,7 @@ var express = require('express')
   , utils = require('./utils')
   , conf = require("./conf")
   , mongoose = require("mongoose")
+  , moment = require("moment")
   , User = require('./model/user')
   , Merchant = require('./model/merchant')
   , _ = require('underscore');
@@ -74,7 +75,10 @@ app.use(function(req, res, next) {
     user: req.user,
     merchant: req.merchant,
     xhr: req.xhr,
-    _: _
+    _: _,
+    moment: function() {
+      return moment(arguments).lang(req.i18n.getLocale());
+    }
   });
   next();
 });
