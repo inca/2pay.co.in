@@ -6,7 +6,7 @@ block main
       .pad
         h2 #{user.name}
         .subtitle #{merchant.title}
-      select.select2
+      select.select2.pad
         each card in cards
           option #{card.number}
       table.rows(width="100%")

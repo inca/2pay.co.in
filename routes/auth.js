@@ -7,22 +7,22 @@ var app = require('../app')
   , _ = require('underscore')
   , utils = require('../utils');
 
-app.get('/signup', function(req, res, next) {
+app.get('/signup', function (req, res, next) {
   res.render('auth/signup')
 });
 
-app.post('/signup', function(req, res, next) {
+app.post('/signup', function (req, res, next) {
   var user = new User(req.body.user);
-  user.save(function(err, user) {
+  user.save(function (err, user) {
     if (err) return next(err);
     var merchant = new Merchant(req.body.merchant);
     merchant.user = user;
-    merchant.save(function(err, merchant) {
+    merchant.save(function (err, merchant) {
       if (err) return next(err);
       var card = new Card({
         merchant: merchant._id
       });
-      card.save(function(err){
+      card.save(function (err) {
         if (err) return next(err);
         res.json({
           notices: res.notices.info("Welcome to 2pay.co.in!").get(),
@@ -33,14 +33,14 @@ app.post('/signup', function(req, res, next) {
   })
 });
 
-app.get('/login', function(req, res, next) {
+app.get('/login', function (req, res, next) {
   res.render('auth/login')
 });
 
-app.post('/login', function(req, res, next) {
+app.post('/login', function (req, res, next) {
   var name;
   User.findOne(req.body.user)
-    .exec(function(err, user) {
+    .exec(function (err, user) {
       if (err) return next(err);
       if (user && req.body.user.password == user.password) {
         name = user.name;
@@ -48,7 +48,7 @@ app.post('/login', function(req, res, next) {
         Merchant.find({ user: user._id })
           .sort({ lastUsedAt: -1 })
           .limit(1)
-          .exec(function(err, merchants) {
+          .exec(function (err, merchants) {
             if (err) return next(err);
             if (merchants.length > 0)
               req.session.merchantId = merchants[0].id;
@@ -63,7 +63,7 @@ app.post('/login', function(req, res, next) {
     });
 });
 
-app.get('/logout', function(req, res, next) {
+app.get('/logout', function (req, res, next) {
   req.logout();
   res.redirect('/');
 });
