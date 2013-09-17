@@ -2,7 +2,8 @@
 
 var mongoose = require("mongoose")
   , conf = require("../conf")
-  , utils = require("../utils");
+  , utils = require("../utils")
+  , moment = require("moment");
 
 var Card = mongoose.Schema({
 
@@ -68,7 +69,8 @@ Card.pre('save', function(next) {
 });
 
 Card.methods.expiredDate = function() {
-  return new Date(this.expires.year, this.expires.month - 1);
+  return moment(new Date(this.expires.year, this.expires.month - 1))
+    .format("MMMM YYYY");
 };
 
 module.exports = mongoose.model("Card", Card);

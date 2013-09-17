@@ -5,22 +5,22 @@ block form
     .paper.pad
       form.partial(method="post", action="/login")
         .row
-          .span-3.no-mobile-screen
+          .span-3
             i.icon-user.icon-large
           .span-9
             .ctl-row
               label
-                span Введите адрес электронной почты
+                span= __("Email")
                 input.field(type="text", name="user[email]")
             .ctl-row
               label
-                span Введите пароль
+                span= __("Password")
                 input.field(type="password", name="user[password]")
         p.centered
-          button.btn.primary.large(type="submit") Войти в систему
+          button.btn.primary.large(type="submit")= __("Login")
 
 block main
-  .row.mobile(data-ref="#login")
+  .row(data-ref="#login")
     .span-3 &nbsp;
     .span-6
       block form

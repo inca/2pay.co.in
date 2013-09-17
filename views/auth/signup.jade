@@ -4,13 +4,13 @@ block form
   .frame
     .paper.pad
       form.partial.validate(method="post", action="/signup")
-        .row
-          .span-3.no-mobile-screen
+        .row.mobile
+          .span-3
             i.icon-user.icon-large
           .span-9
             .ctl-row
               label
-                span Имя пользователя
+                span= __("Username")
                 input.field(
                 type="text",
                 name="user[name]",
@@ -18,7 +18,7 @@ block form
                 minlength='4')
             .ctl-row
               label
-                span Пароль
+                span= __("Password")
                 input.field(
                 type="password",
                 name="user[password]",
@@ -26,29 +26,29 @@ block form
                 minlength='8')
             .ctl-row
               label
-                span Адрес электронной почты
+                span= __("Email")
                 input.field(
                 type="email",
                 name="user[email]")
         hr
-        .row
-          .span-3.no-mobile-screen
+        .row.mobile
+          .span-3
             i.icon-building.icon-large
           .span-9
             .ctl-row
               label
-                span Название компании продавца
+                span= __("Merchant title")
                 input.field(
                 type="text",
                 name="merchant[title]",
                 required='required')
 
         p.centered
-          button.btn.primary.large(type="submit") Регистрация
+          button.btn.primary.large(type="submit")= __("Sign up")
 
 block main
-  .row.mobile(data-ref="#signup")
-    .span-3 &nbsp;
+  .row(data-ref="#signup")
+    .span-3.no-mobile-screen.no-medium-screen &nbsp;
     .span-6
       block form
-    .span-3 &nbsp;
+    .span-3.no-mobile-screen.no-medium-screen &nbsp;

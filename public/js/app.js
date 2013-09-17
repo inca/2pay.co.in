@@ -7,3 +7,7 @@ $.scalpel.queue['form.validate'] = function() {
     return form.valid();
   });
 };
+
+$.scalpel.queue['.select2'] = function() {
+  $(this).select2();
+};

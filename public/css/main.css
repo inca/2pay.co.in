@@ -33,12 +33,6 @@
 .pad-top{padding-top:16px}
 .pad-bottom{padding-bottom:16px}
 .pad-side{padding-left:16px;padding-right:16px}
-.pad-large{padding:48px}
-.pad-left-large{padding-left:48px}
-.pad-right-large{padding-right:48px}
-.pad-top-large{padding-top:48px}
-.pad-bottom-large{padding-bottom:48px}
-.pad-side-large{padding-left:48px;padding-right:48px}
 .margin{margin:16px}
 .margin-left{margin-left:16px}
 .margin-right{margin-right:16px}
@@ -171,9 +165,6 @@ input.field.shade::-ie-input-placeholder,textarea.field.shade::-ie-input-placeho
 input.field{font-family:"HelveticaNeueLight","HelveticaNeue-Light","Helvetica Neue Light","HelveticaNeue","Helvetica Neue","Segoe UI","Helvetica","Tahoma","Geneva","Arial",sans-serif;font-size:16px;}
 input.field.large{font-size:28px}
 textarea.field{font-family:Monaco,Courier New,Courier,monospace;font-size:14px}
-label.descr-left,label.descr-right{display:block;line-height:16px;padding:8px}
-label.descr-left{text-align:left}
-label.descr-right{text-align:right}
 label.error{position:relative;display:block;background:rgba(0,0,0,0.6);color:#fff;text-shadow:0 1px 1px #000;font-size:14px;padding:6px 12px;-webkit-border-radius:4px;border-radius:4px;margin-top:8px;border:2px solid #444;}
 label.error::after{content:'';display:block;position:absolute;top:-14px;left:16px;border:6px solid transparent;border-bottom-color:#444}
 .remote-fragment.process{-webkit-filter:blur(4px);-moz-filter:blur(4px);-o-filter:blur(4px);filter:blur(4px)}
@@ -194,7 +185,6 @@ a.noline{text-decoration:none}
 .perspective{-webkit-perspective:1000;-moz-perspective:1000;-ms-perspective:1000;perspective:1000;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-o-transform-style:preserve-3d;-ms-transform-style:preserve-3d;transform-style:preserve-3d}
 html,body,form,fieldset,img{padding:0;margin:0;border:0}
 a,a:hover,a:visited{color:#3ca9ee}
-.row .span-1.hack-height{height:1px;margin:0 !important}
 body{font-family:Helvetica Neue,Segoe UI,Arial,sans-serif;font-size:16px;line-height:1.5em;font-weight:300;background:url("/img/bg/linen.png") repeat #444}
 #header{position:relative;line-height:40px;}
 #header::after{content:'';display:table;clear:both}
@@ -205,8 +195,10 @@ body{font-family:Helvetica Neue,Segoe UI,Arial,sans-serif;font-size:16px;line-he
 #header .nav > a:hover{color:#fff}
 #header .nav > a.active{color:#fff;}
 #header .nav > a.active::after{content:'';position:absolute;display:block;height:12px;bottom:-12px;left:0;right:0;background:url("/img/topnav-pop.png") center top no-repeat}
-@media screen and (max-width:480px){#header .brand,#header .auth,#header .nav{width:auto;float:none;position:static;display:block;text-align:center;}
+@media screen and (max-width:768px){#header{text-align:center;}
+#header .brand,#header .auth,#header .nav{width:auto;float:none;position:static;display:block;text-align:center;}
 #header .brand > a.active::after,#header .auth > a.active::after,#header .nav > a.active::after{display:none}
+#header .nav{text-aling:center;display:inline-block;margin-left:0}
 }#content{background:rgba(0,0,0,0.25);-webkit-box-shadow:0 64px 3px -64px #000 inset,0 -64px 3px -64px #000 inset;box-shadow:0 64px 3px -64px #000 inset,0 -64px 3px -64px #000 inset}
 #sidenav{float:left;width:192px;padding:16px 0;}
 #sidenav a{display:block;color:#aaa;text-shadow:0 1px 1px #000;text-decoration:none;padding:6px 16px;}

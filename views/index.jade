@@ -10,8 +10,6 @@ block main
             h2 Тестовый платежный шлюз
             p.subtitle Ваш помощник в настройке любых платежных систем
 
-
-
         .span-5
           .hero
             div
@@ -33,3 +31,6 @@ block main
           a.btn.primary.large(href="/signup")= __("Sign up now")
           span= __(' or ')
           a(href="/login")= __("login")
+
+  form(action='/', method='post')
+    input(type='submit')

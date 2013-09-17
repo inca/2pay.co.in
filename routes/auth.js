@@ -38,10 +38,12 @@ app.get('/login', function(req, res, next) {
 });
 
 app.post('/login', function(req, res, next) {
+  var name;
   User.findOne(req.body.user)
     .exec(function(err, user) {
-      if (err) next(err);
-      if (user && up == user.password) {
+      if (err) return next(err);
+      if (user && req.body.user.password == user.password) {
+        name = user.name;
         req.login(user);
         Merchant.find({ user: user._id })
           .sort({ lastUsedAt: -1 })
@@ -51,6 +53,7 @@ app.post('/login', function(req, res, next) {
             if (merchants.length > 0)
               req.session.merchantId = merchants[0].id;
             res.json({
+              notices: res.notices.info("Welcome back, " + name).get(),
               redirect: "/"
             });
           });

@@ -5,13 +5,16 @@ block main
     .paper.pad-bottom
       .pad
         h2 #{user.name}
-        .subtitle #{curMerchant.title}
+        .subtitle #{merchant.title}
+      select.select2
+        each card in cards
+          option #{card.number}
       table.rows(width="100%")
         hr.no-margin
         each card in cards
           tr
             td.right-align= __("Номер карты:")
-            td #{card.issuer} #{card.number}
+            td  #{card.number}
           tr
             td.right-align= __("Валюта:")
             td #{card.currency}
@@ -28,7 +31,7 @@ block main
         a.btn.primary(href="cards/create")
           i.icon-plus-sign
           span= __("Create card")
-        span= __("or")
+        span= __(" or ")
         a.btn.danger(href="cards/delete")
           i.icon-remove-sign
           span= __("Delete card")
