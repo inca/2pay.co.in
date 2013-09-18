@@ -2,7 +2,8 @@
 
 var app = require('../app')
   , Merchant = require('../model/merchant')
-  , Card = require('../model/card');
+  , Card = require('../model/card')
+  , Transaction = require('../model/transaction');
 
 app.all('/card/:id*', function(req, res, next) {
   if (!req.user)
@@ -23,4 +24,16 @@ app.all('/card/:id*', function(req, res, next) {
 
 app.get('/card/:id', function(req, res, next) {
   res.render('card/index');
+});
+
+app.get('/card/:id/deposit', function(req, res, next){
+  res.render('card/deposit');
+});
+
+app.post('/card/:id/deposit', function(req, res, next){
+  var value = req.param("deposit");
+  Transaction.txRun(req.param.id, value)(function(err){
+    if (err) return next(err);
+    res.redirect("/")
+  })
 });

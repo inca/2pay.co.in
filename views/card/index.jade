@@ -3,4 +3,8 @@ extends layout
 block append main
   .frame
     .paper.pad
+      a.btn(href="#{merchantPath}/cards")
+        i.icon-arrow-left
+        span= __("Back to cards")
       h2= card.numberFormatted
+      a(href='#{cardPath}/deposit')= __('Top-up')

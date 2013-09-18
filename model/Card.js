@@ -46,6 +46,11 @@ var Card = mongoose.Schema({
     type: String,
     enum: conf.currency,
     default: "RUB"
+  },
+
+  pendingTransaction: {
+    type: Array,
+    default: []
   }
 
 });

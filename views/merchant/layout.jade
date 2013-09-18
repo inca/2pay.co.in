@@ -11,6 +11,9 @@ block content
     a#nav-cards(href="#{merchantPath}/cards")
       i.icon-credit-card
       span= __("Cards")
+    a#nav-edit(href="#{merchantPath}/edit")
+      i.icon-edit-sign
+      span= __("Settings")
 
   #main(data-ref='#nav-merchant')
     block main

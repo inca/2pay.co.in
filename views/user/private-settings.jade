@@ -1,0 +1,27 @@
+extends layout
+
+block main
+  .frame(data-ref="#nav-private-settings")
+    .paper.pad
+
+      h2 Change password
+
+      form.partial(method="post", action="/user/private-settings")
+        .row
+          .span-3.centered &nbsp
+          .span-6
+            .ctl-row
+              label
+                span= __("Old password")
+                input.field.focus(type="text", name="pwd[oldPassword]")
+            .ctl-row
+              label
+                span= __("New password")
+                input.field.focus(type="text", name="pwd[newPassword]")
+            .ctl-row
+              label
+                span= __("Confirm new password")
+                input.field.focus(type="text",
+                name="pwd[confirmPassword]")
+        p.centered
+          button.btn.primary.large(type="submit")= __("Apply changes")

@@ -5,5 +5,11 @@ block content
     a#nav-merchants(href='/merchants')
       i.icon-building
       span= __('Merchants')
+    a#nav-public-settings(href='/user/public-settings')
+      i.icon-edit-sign
+      span= __('Public settings')
+    a#nav-private-settings(href='/user/private-settings')
+      i.icon-edit-sign
+      span= __('Private settings')
   #main(data-ref='#nav-user')
     block main

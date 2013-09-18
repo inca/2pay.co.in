@@ -2,7 +2,9 @@
 
 var app = require('../app')
   , Merchant = require('../model/merchant')
-  , Card = require('../model/card');
+  , Card = require('../model/card')
+  , Merchant = require('../model/merchant')
+  , _ = require('underscore');
 
 app.all('/merchant/:id*', function(req, res, next) {
   if (!req.user)
@@ -23,8 +25,22 @@ app.get('/merchant/:id', function(req, res, next) {
 });
 
 app.post('/merchant/:id', function(req, res, next) {
-  // EDIT
-  res.send(501);
+
+  Merchant.findOne({ _id: req.param('id') }).exec(function(err, merchant){
+    if (err) return next(err);
+    _.each(req.body.merchant, function(num, key, list){
+      if (num != "") {
+        merchant[key] = list[key]
+      }
+    });
+
+    merchant.save(function(err){
+      if (err) return next(err);
+      res.json({
+        redirect: "/merchant/" + req.param('id')
+      })
+    })
+  });
 });
 
 app.get('/merchant/:id/delete', function(req, res, next) {
@@ -48,4 +64,8 @@ app.get('/merchant/:id/cards', function(req, res, next) {
       if (err) return next(err);
       res.render('merchant/cards', { cards: cards });
     });
+});
+
+app.get('/merchant/:id/edit', function(req, res, next){
+  res.render('merchant/edit')
 });

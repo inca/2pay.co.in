@@ -1,0 +1,22 @@
+extends layout
+
+block main
+  .frame(data-ref="#nav-public-settings")
+    .paper.pad
+
+      h2 Account settings
+
+      form.partial(method="post", action="/user/public-settings")
+        .row
+          .span-3.centered &nbsp
+          .span-6
+            .ctl-row
+              label
+                span= __("Email")
+                input.field.focus(type="text", name="user[email]")
+            .ctl-row
+              label
+                span= __("Username")
+                input.field.focus(type="text", name="user[name]")
+        p.centered
+          button.btn.primary.large(type="submit")= __("Apply changes")

@@ -1,0 +1,17 @@
+extends layout
+
+block append main
+  .frame(data-ref="#nav-edit")
+    .paper.pad
+      form.partial(method="post", action="/merchant/#{merchant.id}")
+        .row
+          .span-3.centered.no-medium-screen
+            p: i.icon-building.enormous
+          .span-9
+            h2= __('Merchant\'s settings')
+            .ctl-row
+              label
+                span= __("Title")
+                input.field.focus(type="text", name="merchant[title]")
+        p.centered
+          button.btn.primary.large(type="submit")= __("Create new merchant")
