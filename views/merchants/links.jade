@@ -1,7 +1,7 @@
 each merchant in merchants
-  a.black.left-align(href="/merchants/choose/#{merchant.id}")
+  a(href="/merchant/#{merchant.id}")
     span= merchant.title
-
-a.black.left-align(href="/merchants/new")
+hr
+a(href="/merchants/new")
   i.icon-plus-sign
   span= __("Create new merchant")

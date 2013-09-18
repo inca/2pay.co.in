@@ -5,11 +5,11 @@ var app = require('../app')
   , _ = require("underscore");
 
 app.get('/', function(req, res) {
-  if (req.user) res.redirect('/cards');
+  if (req.user) res.redirect('/merchants');
   else res.render('index');
 });
 
-require('./cards');
 require('./auth');
 require('./merchants');
 require('./merchant');
+require('./card');

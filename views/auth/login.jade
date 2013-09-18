@@ -5,13 +5,13 @@ block form
     .paper.pad
       form.partial(method="post", action="/login")
         .row
-          .span-3
-            i.icon-user.icon-large
+          .span-3.centered
+            p: i.icon-user.enormous
           .span-9
             .ctl-row
               label
                 span= __("Email")
-                input.field(type="text", name="user[email]")
+                input.field.focus(type="text", name="user[email]")
             .ctl-row
               label
                 span= __("Password")
@@ -19,10 +19,11 @@ block form
         p.centered
           button.btn.primary.large(type="submit")= __("Login")
 
-block main
-  .row(data-ref="#login")
-    .span-3 &nbsp;
-    .span-6
-      block form
-    .span-3 &nbsp;
+block content
+  .pad(data-ref="#nav-login")
+    .row
+      .span-3 &nbsp;
+      .span-6
+        block form
+      .span-3 &nbsp;
 

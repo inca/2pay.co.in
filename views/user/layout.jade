@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  #sidenav
+    a#nav-merchants(href='/merchants')
+      i.icon-building
+      span= __('Merchants')
+  #main(data-ref='#nav-user')
+    block main

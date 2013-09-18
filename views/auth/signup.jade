@@ -5,17 +5,23 @@ block form
     .paper.pad
       form.partial.validate(method="post", action="/signup")
         .row.mobile
-          .span-3
-            i.icon-user.icon-large
+          .span-3.centered
+            p: i.icon-user.enormous
           .span-9
             .ctl-row
               label
                 span= __("Username")
-                input.field(
+                input.field.focus(
                 type="text",
                 name="user[name]",
                 required='required',
                 minlength='4')
+            .ctl-row
+              label
+                span= __("Email")
+                input.field(
+                type="email",
+                name="user[email]")
             .ctl-row
               label
                 span= __("Password")
@@ -24,16 +30,10 @@ block form
                 name="user[password]",
                 required='required',
                 minlength='8')
-            .ctl-row
-              label
-                span= __("Email")
-                input.field(
-                type="email",
-                name="user[email]")
         hr
         .row.mobile
-          .span-3
-            i.icon-building.icon-large
+          .span-3.centered
+            p: i.icon-building.enormous
           .span-9
             .ctl-row
               label
@@ -46,9 +46,10 @@ block form
         p.centered
           button.btn.primary.large(type="submit")= __("Sign up")
 
-block main
-  .row(data-ref="#signup")
-    .span-3.no-mobile-screen.no-medium-screen &nbsp;
-    .span-6
-      block form
-    .span-3.no-mobile-screen.no-medium-screen &nbsp;
+block content
+  .pad(data-ref="#nav-signup")
+    .row
+      .span-3.no-mobile-screen.no-medium-screen &nbsp;
+      .span-6
+        block form
+      .span-3.no-mobile-screen.no-medium-screen &nbsp;

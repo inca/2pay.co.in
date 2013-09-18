@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  #sidenav
+    a#nav-summary(href=merchantPath)
+      i.icon-info-sign
+      span= __("Summary")
+    a#nav-transactions(href="#{merchantPath}/transactions")
+      i.icon-refresh
+      span= __("Transactions")
+    a#nav-cards(href="#{merchantPath}/cards")
+      i.icon-credit-card
+      span= __("Cards")
+
+  #main(data-ref='#nav-merchant')
+    block main

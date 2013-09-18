@@ -1,6 +1,16 @@
 extends layout
 
-block content
-  h1 PREVED
-  each merchant in merchants
-    a(href='/merchant/#{merchant.id}')= merchant.title
+block append main
+  .frame
+    .paper.pad
+      h2= __('Merchants')
+      if (merchants.length > 0)
+        ul
+          each merchant in merchants
+            li: a(href='/merchant/#{merchant.id}')= merchant.title
+      else
+        p.kicker= __('You have no merchants under your control. Start by creating one.')
+      .centered
+        a.btn.primary(href="/merchants/new")
+          i.icon-plus-sign
+          span= __("Create new merchant")

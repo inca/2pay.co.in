@@ -43,7 +43,7 @@ body
     text-decoration: none
     &:hover
       color:#fff
-  .nav a.elem.active
+  .nav a.elem.active, .nav a.elem.on
     color: #fff
     &::after
       content:''
@@ -91,13 +91,6 @@ body
     &.active
       color: #fff
       text-shadow: 0 0 1px #aad0de, 0 0 16px #aad0de
-    &.bot-line
-      &:after
-        content:""
-        position: relative;
-        display: block;
-        border-bottom: 1px solid #888;
-        top:6px
 
 #main
   margin-left: 192px

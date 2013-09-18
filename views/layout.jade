@@ -25,11 +25,11 @@ else
           img(src='/img/logo.png', alt='2pay.co.in')
         .nav
           if (user)
-            a#user-nav.elem(href="/profile")
+            a#nav-user.elem(href="/")
               i.icon-user.smooth
               span= user.name
             .relative.inline-block
-              a#merchant-nav.elem(data-switch='#merchants-list')
+              a#nav-merchant.elem(data-switch='#merchants-list', data-switch-class='on')
                 i.icon-building.smooth
                 if (merchant)
                   span= merchant.title
@@ -37,21 +37,14 @@ else
                   span= __('Select merchant')
                 i.icon-caret-down
               #merchants-list.dropdown.right(data-url="/merchants/links")
-            a#logout.elem.float-right(href="/logout")
+            a#nav-logout.elem.float-right(href="/logout")
                 i.icon-power-off
                 span= __('Logout')
           else
-            a.elem#signup(href="/signup")= __("Signup")
-            a.elem#login(href="/login")= __("Login")
+            a.elem#nav-signup(href="/signup")= __("Signup")
+            a.elem#nav-login(href="/login")= __("Login")
       #content
-        if (user)
-          #sidenav
-            include shared/sidebar.p.jade
-          #main
-            block main
-        else
-          #main-not-login
-            block main
+        block content
 
       #footer
         p 2012—2013 &copy; <a href='http://2pay.co.in'>2pay.co.in</a>

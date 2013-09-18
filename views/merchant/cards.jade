@@ -1,0 +1,19 @@
+extends layout
+
+block append main
+  .frame(data-ref='#nav-cards')
+    .paper
+      if (cards.length > 0)
+        table.sorted.rows(width='100%')
+          thead
+            tr
+              th.sorted.asc= __('Card number')
+              th.sorted= __('Expires at')
+              th.sorted= __('Balance')
+          tbody
+            each card in cards
+              tr
+                td
+                  a.noline(href='/card/#{card.id}')= card.numberFormatted
+                td= card.expires.date
+                td= card.balance + ' ' + card.currency

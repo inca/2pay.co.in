@@ -10,7 +10,6 @@ var express = require('express')
   , mongoose = require("mongoose")
   , moment = require("moment")
   , User = require('./model/user')
-  , Merchant = require('./model/merchant')
   , _ = require('underscore');
 
 var port = process.env.PORT || 3003;
@@ -51,20 +50,6 @@ app.use(function(req, res, next) {
   } else next();
 });
 
-// Fetch current merchant if set
-app.use(function(req, res, next) {
-
-  if (req.session.merchantId) {
-    Merchant.findById(req.session.merchantId)
-      .exec(function(err, merchant) {
-        if (err) next(err);
-        req.merchant = merchant;
-        next();
-      });
-  } else next();
-
-});
-
 I18n.expressBind(app, {
   locales: ['ru'],
   extension: ".json"
@@ -73,7 +58,6 @@ I18n.expressBind(app, {
 app.use(function(req, res, next) {
   _.extend(res.locals, utils, {
     user: req.user,
-    merchant: req.merchant,
     xhr: req.xhr,
     _: _,
     moment: function() {

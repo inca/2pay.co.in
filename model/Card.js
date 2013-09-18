@@ -68,9 +68,13 @@ Card.pre('save', function(next) {
   next();
 });
 
-Card.methods.expiredDate = function() {
+Card.virtual('expires.date').get(function() {
   return moment(new Date(this.expires.year, this.expires.month - 1))
-    .format("MMMM YYYY");
-};
+    .format("MM/YYYY");
+});
+
+Card.virtual('numberFormatted').get(function() {
+  return this.number.replace(/^(.{4})(.{4})(.{4})(.*)$/, '$1 $2 $3 $4');
+});
 
 module.exports = mongoose.model("Card", Card);
