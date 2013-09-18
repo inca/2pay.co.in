@@ -25,18 +25,24 @@ else
           img(src='/img/logo.png', alt='2pay.co.in')
         .nav
           if (user)
-            a#user-nav.active(href="/profile")
+            a#user-nav.elem(href="/profile")
               i.icon-user.smooth
-              span #{user.name}
-            a#merchant-nav
-              i.icon-building.smooth
-              span #{merchant.title}
-            a#logout.float-right(href="/logout")
-              i.icon-power-off
-              span= __('Logout')
+              span= user.name
+            .relative.inline-block
+              a#merchant-nav.elem(data-switch='#merchants-list')
+                i.icon-building.smooth
+                if (merchant)
+                  span= merchant.title
+                else
+                  span= __('Select merchant')
+                i.icon-caret-down
+              #merchants-list.dropdown.right(data-url="/merchants/links")
+            a#logout.elem.float-right(href="/logout")
+                i.icon-power-off
+                span= __('Logout')
           else
-            a#signup(href="/signup")= __("Registration")
-            a#login(href="/login")= __("Login")
+            a.elem#signup(href="/signup")= __("Signup")
+            a.elem#login(href="/login")= __("Login")
       #content
         if (user)
           #sidenav

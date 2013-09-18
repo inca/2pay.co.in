@@ -1,0 +1,21 @@
+extends ../layout
+
+block form
+  .frame
+    .paper.pad
+      form.partial(method="post", action="/merchants")
+        .row
+          .span-3
+            i.icon-building.icon-large
+          .span-9
+            .ctl-row
+              label
+                span= __("Merchant's title")
+                input.field(type="text", name="merchant[title]")
+        p.centered
+          button.btn.primary.large(type="submit")= __("Add new merchant")
+block main
+  .row
+    .span-12
+      block form
+

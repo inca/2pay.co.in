@@ -1,0 +1,13 @@
+extends ../layout
+
+block main
+  .frame
+    .paper.pad
+      p= __("Are you sure you want to delete merchant,")
+        | #{merchant.title}
+      form.partial(method="post", action="/merchants/remove")
+        p.centered
+          button.btn.danger(type="submit")= __("Delete")
+          span= (" or ")
+          a.btn.primary(href="/")= __("No")
+

@@ -1,13 +1,19 @@
-a.bot-line
-  i.icon-info-sign
-  span= __("Summury")
+#merchant-settings
+  a.bot-line
+    i.icon-info-sign
+    span= __("Summury")
 
-a(href="/cards")
-  i.icon-credit-card
-  span= __("Cards")
-a
-  i.icon-credit-card
-  span= __("Vouchers")
-a
-  i.icon-credit-card
-  span= __("Coupons")
+  a#cards(href="merchant/cards")
+    i.icon-credit-card
+    span= __("Cards")
+  a#vouchers(href="merchant/vouchers")
+    i.icon-credit-card
+    span= __("Vouchers")
+  a#coupons(href="merchant/coupons")
+    i.icon-credit-card
+    span= __("Coupons")
+
+  if (merchant && merchant.user == user.id)
+    a#delete(href="merchants/remove")
+      i.icon-remove-sign
+      span= __("Remove merchants")

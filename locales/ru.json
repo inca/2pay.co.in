@@ -21,5 +21,22 @@
 	"Действительна до:": "Действительна до:",
 	"CVC:": "CVC:",
 	"Create card": "Create card",
-	"Delete card": "Delete card"
+	"Delete card": "Delete card",
+	"2pay.co.in": "2pay.co.in",
+	"Create new merchant": "Create new merchant",
+	"Merchant has changed": "Merchant has changed",
+	"Merchant's title": "Merchant's title",
+	"Add new merchant": "Add new merchant",
+	"Welcome to 2pay.co.in!": "Welcome to 2pay.co.in!",
+	"Welcome back, publicfess@gmail.com": "Welcome back, publicfess@gmail.com",
+	"New merchant created": "New merchant created",
+	"Email or password is invalid": "Email or password is invalid",
+	"Welcome back, Никита": "Welcome back, Никита",
+	"Remove merchants": "Remove merchants",
+	"Are you sure you want to delete merchant merchant.title": "Are you sure you want to delete merchant merchant.title",
+	"Delete": "Delete",
+	"No": "No",
+	"Are you sure you want to delete merchant #{merchant.title}": "Are you sure you want to delete merchant #{merchant.title}",
+	"Are you sure you want to delete merchant,": "Are you sure you want to delete merchant,",
+	"Merchant removed": "Merchant removed"
 }

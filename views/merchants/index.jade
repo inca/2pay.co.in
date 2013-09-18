@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  h1 PREVED
+  each merchant in merchants
+    a(href='/merchant/#{merchant.id}')= merchant.title

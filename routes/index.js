@@ -11,3 +11,5 @@ app.get('/', function(req, res) {
 
 require('./cards');
 require('./auth');
+require('./merchants');
+require('./merchant');

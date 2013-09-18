@@ -15,10 +15,12 @@ app.post('/signup', function (req, res, next) {
   var user = new User(req.body.user);
   user.save(function (err, user) {
     if (err) return next(err);
+    req.login(user);
     var merchant = new Merchant(req.body.merchant);
     merchant.user = user;
     merchant.save(function (err, merchant) {
       if (err) return next(err);
+      req.session.merchantId = merchant.id
       var card = new Card({
         merchant: merchant._id
       });
@@ -49,6 +51,7 @@ app.post('/login', function (req, res, next) {
           .sort({ lastUsedAt: -1 })
           .limit(1)
           .exec(function (err, merchants) {
+            console.log(merchants);
             if (err) return next(err);
             if (merchants.length > 0)
               req.session.merchantId = merchants[0].id;
