@@ -8,10 +8,10 @@ var app = require('../app')
 app.all('/merchant/:id*', function(req, res, next) {
   if (!req.user)
     return res.redirect("login");
-  Merchant.findOne({ _id: req.param('id') })
+  Merchant.findOne({ _id: req.param('id'), user: req.user.id })
     .exec(function(err, merchant) {
       if (err) return next(err);
-      if (!merchant || merchant.user != req.user.id)
+      if (!merchant)
         return res.send(404);
       req.merchant = res.locals.merchant = merchant;
       res.locals.merchantPath = '/merchant/' + merchant.id;
@@ -72,9 +72,10 @@ app.post('/merchant/:id/cards', function(req, res, next) {
 
   if (req.body.card.currency && req.body.card.issuer) {
     var card = new Card({
-      merchant: req.param("id"),
+      merchant: req.merchant._id,
       issuer: req.body.card.issuer,
-      currency: req.body.card.currency
+      currency: req.body.card.currency,
+      user: req.merchant.user
     }).save(function(err){
         if (err) return next(err);
         res.json({

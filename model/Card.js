@@ -7,6 +7,11 @@ var mongoose = require("mongoose")
 
 var Card = mongoose.Schema({
 
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'User'
+  },
+
   merchant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Merchant'
@@ -68,7 +73,7 @@ Card.pre('save', function(next) {
       sum += p;
     }
   }
-  num += (10 - (sum % 10)).toString();
+  num += ((10 - (sum % 10)).toString())%10;
   this.number = num;
   next();
 });

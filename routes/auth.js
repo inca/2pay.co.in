@@ -21,7 +21,8 @@ app.post('/signup', function (req, res, next) {
     merchant.save(function (err, merchant) {
       if (err) return next(err);
       var card = new Card({
-        merchant: merchant._id
+        merchant: merchant._id,
+        user: merchant.user
       });
       card.save(function (err) {
         if (err) return next(err);

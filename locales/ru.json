@@ -56,5 +56,8 @@
 	"login": "login",
 	"Merchant title": "Merchant title",
 	"Sign up": "Sign up",
-	"Welcome to 2pay.co.in!": "Welcome to 2pay.co.in!"
+	"Welcome to 2pay.co.in!": "Welcome to 2pay.co.in!",
+	"You have no cards under your control. Start by creating one.": "You have no cards under your control. Start by creating one.",
+	"Enter the numbers": "Enter the numbers",
+	"Limit has been exceeded.": "Limit has been exceeded."
 }
