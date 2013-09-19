@@ -50,7 +50,7 @@ var Card = mongoose.Schema({
 
   pendingTransaction: {
     type: Array,
-    default: []
+    default: [ ]
   }
 
 });

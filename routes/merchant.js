@@ -3,7 +3,6 @@
 var app = require('../app')
   , Merchant = require('../model/merchant')
   , Card = require('../model/card')
-  , Merchant = require('../model/merchant')
   , _ = require('underscore');
 
 app.all('/merchant/:id*', function(req, res, next) {
@@ -51,10 +50,13 @@ app.get('/merchant/:id/delete', function(req, res, next) {
 app.delete('/merchant/:id', function(req, res, next) {
   Merchant.remove({ _id: req.param('id') }, function(err) {
     if (err) return next(err);
-    res.json({
-      notices: res.notices.info("Merchant removed."),
-      redirect: '/merchants'
-    });
+    Card.remove({merchant:req.param('id')}, function(err){
+      if (err) return next(err);
+      res.json({
+        notices: res.notices.info("Merchant removed."),
+        redirect: '/merchants'
+      });
+    })
   })
 });
 
@@ -62,8 +64,33 @@ app.get('/merchant/:id/cards', function(req, res, next) {
   Card.find({ merchant: req.merchant.id })
     .exec(function(err, cards) {
       if (err) return next(err);
-      res.render('merchant/cards', { cards: cards });
+      res.render('merchant/cards/index', { cards: cards });
     });
+});
+
+app.post('/merchant/:id/cards', function(req, res, next) {
+
+  if (req.body.card.currency && req.body.card.issuer) {
+    var card = new Card({
+      merchant: req.param("id"),
+      issuer: req.body.card.issuer,
+      currency: req.body.card.currency
+    }).save(function(err){
+        if (err) return next(err);
+        res.json({
+          notices: res.notices.info("Card has been created").get(),
+          redirect: "/merchant/" + req.param("id") + "/cards"
+        })
+      })
+  } else {
+    res.json({
+      notices: res.notices.error("Please check parameters for new card.").get()
+    });
+  }
+});
+
+app.get('/merchant/:id/cards/new', function(req, res, next){
+  res.render('merchant/cards/new')
 });
 
 app.get('/merchant/:id/edit', function(req, res, next){

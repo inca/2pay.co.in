@@ -1,0 +1,9 @@
+h2= __("Deleting merchant")
+
+p= __("Confirm deleting or cancelling")
+
+form.partial(method='delete', action='#{merchantPath}')
+  p.centered
+    a.btn.primary.close= __("Cancel")
+    span= __(" or ")
+    button.btn.danger(type="submit")= __("Delete")

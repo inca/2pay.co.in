@@ -1,0 +1,33 @@
+extends ../layout
+
+block append main
+  .frame(data-ref="#nav-cards")
+    .paper.pad
+      form.partial(method="post", action="#{merchantPath}/cards")
+        .row
+          .span-3.centered
+            p: i.icon-credit-card.enormous
+          .span-9
+            hr.mo-margin
+            p
+              label= __("Visa")
+                input(type="radio", name="card[issuer]", value="400000",
+                checked)
+              br
+              label= __("MasterCard")
+                input(type="radio", name="card[issuer]", value="500000")
+            hr.no-margin
+            p
+              label= __("RUB")
+                input(type="radio", name="card[currency]", value="RUB", checked)
+              br
+              label= __("USD")
+                input(type="radio", name="card[currency]", value="USD")
+              br
+              label= __("EUR")
+                input(type="radio", name="card[currency]", value="EUR")
+            hr.no-margin
+        p.centered
+          button.btn.primary.large(type="submit")= __("Create card")
+
+

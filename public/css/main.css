@@ -71,6 +71,7 @@ p,h1,h2,h3,h4,h5,h6,ul,ol,li{margin:1em 0}
 .hero{margin:auto;border:1px transparent;border-radius:8px;padding:16px;}
 .hero h1{font-size:50px;line-height:1.25em;margin:.5em 0;text-shadow:2px 2px 2px rgba(125,125,125,0.5)}
 .hero h2{text-shadow:1px 1px 0 rgba(125,125,125,0.5)}
+.logo-card img{width:50px;vertical-align:middle}
 h1{font-size:36px;font-family:Fertigo}
 h2{font-size:28px;font-weight:normal;margin:24px 0}
 h3{font-size:20px;font-weight:normal;color:#d46}
@@ -184,6 +185,9 @@ a.noline{text-decoration:none}
 .black a,a.black a{color:#222;text-shadow:0 1px 1px rgba(255,255,255,0.4)}
 .color-danger,a.color-danger{color:#c33}
 .perspective{-webkit-perspective:1000;-moz-perspective:1000;-ms-perspective:1000;perspective:1000;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-o-transform-style:preserve-3d;-ms-transform-style:preserve-3d;transform-style:preserve-3d}
+#ibox{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);padding:5% 10%;z-index:1000;overflow-y:scroll;}
+#ibox #ibox-wrapper{position:relative;background:#fff;padding:16px;-webkit-box-shadow:0 0 32px rgba(0,0,0,0.1) inset,0 1px 3px #000;box-shadow:0 0 32px rgba(0,0,0,0.1) inset,0 1px 3px #000}
+#ibox #ibox-close{display:block;position:absolute;top:-12px;right:-12px;width:24px;height:24px;background:#000 url("/img/close.png") center center no-repeat;-webkit-border-radius:24px;border-radius:24px;border:2px solid #fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.8);box-shadow:0 1px 3px rgba(0,0,0,0.8);cursor:pointer}
 html,body,form,fieldset,img{padding:0;margin:0;border:0}
 a,a:hover,a:visited{color:#3ca9ee}
 body{font-family:Helvetica Neue,Segoe UI,Arial,sans-serif;font-size:16px;line-height:1.5em;font-weight:300;background:url("/img/bg/linen.png") repeat #444}

@@ -5,7 +5,7 @@ block append main
     .paper.pad
       h1 hello
       .ctl-row
-        form(method="post", action="#{cardPath}/deposit")
+        form.partial(method="post", action="#{cardPath}/deposit")
           label= __('Enter the numbers')
             input.field.focus(type="text", name='deposit')
           p.centered

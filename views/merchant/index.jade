@@ -5,3 +5,7 @@ block main
     .paper.pad
       h1= merchant.title
       p TODO add summary stuff
+
+
+      a(href="#{merchantPath}/delete", rel="popup")
+        span= __('Delete merchant')

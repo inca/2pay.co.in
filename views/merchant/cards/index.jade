@@ -1,8 +1,8 @@
-extends layout
+extends ../layout
 
 block append main
   .frame(data-ref='#nav-cards')
-    .paper
+    .paper.pad
       if (cards.length > 0)
         table.sorted.rows(width='100%')
           thead
@@ -17,3 +17,15 @@ block append main
                   a.noline(href='/card/#{card.id}')= card.numberFormatted
                 td= card.expires.date
                 td= card.balance + ' ' + card.currency
+                td
+                  a.noline.float-right.color-danger(
+                  href="/card/" + card.id + "/delete",
+                  title= __('Delete card'),
+                  rel="popup")
+                    i.icon-remove-sign
+
+      hr.no-margin
+      p
+        a.btn.primary(href="#{merchantPath}/cards/new")
+          i.icon-plus-sign
+          span= __("Create card")

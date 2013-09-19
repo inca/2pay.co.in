@@ -16,6 +16,8 @@ var Transaction = mongoose.Schema({
     require: true
   },
 
+  type: String,
+
   state: {
     type: String,
     default: "initial"
@@ -23,11 +25,12 @@ var Transaction = mongoose.Schema({
 
 });
 
-Transaction.statics.txRun = function(desId, value) {
+Transaction.statics.txRun = function(desId, value, type) {
 
   return function(cb){
     var tx = new exports({
       destination:desId,
+      type: type,
       value: value,
       state: "pending"
     })
@@ -36,14 +39,26 @@ Transaction.statics.txRun = function(desId, value) {
       // Save transaction
 
       function(cb){
-        tx.save(cb);
+        switch (tx.type){
+          case ("deposit"):
+            tx.save(cb);
+            break;
+          case ("pay"):
+            tx.value = -tx.value;
+            tx.save(cb);
+            break;
+          default:
+            cb(new Error(500));
+            break;
+        }
       },
 
       // Apply Transaction to destination
 
       function(cb){
-        Card.findOne({id:desId, pendingTransaction:{$ne: tx._id}})
+        Card.findOne({_id:tx.destination, pendingTransaction:{$ne: tx._id}})
           .exec(function(err, card){
+            console.log(card.pendingTransaction);
             if (err) cb(err);
             card.balance += tx.value;
             card.pendingTransaction.push(tx._id);
@@ -61,7 +76,7 @@ Transaction.statics.txRun = function(desId, value) {
       // Remove pending transaction
 
       function(cb){
-        Card.findOne({id:desId, pendingTransaction:tx._id})
+        Card.findOne({_id:desId, pendingTransaction:tx._id})
           .exec(function(err, card){
             if (err) cb(err);
             card.pendingTransaction.pull(tx._id);

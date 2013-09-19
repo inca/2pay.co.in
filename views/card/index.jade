@@ -3,8 +3,38 @@ extends layout
 block append main
   .frame
     .paper.pad
-      a.btn(href="#{merchantPath}/cards")
+      a.noline(href="#{merchantPath}/cards")
         i.icon-arrow-left
         span= __("Back to cards")
+
       h2= card.numberFormatted
-      a(href='#{cardPath}/deposit')= __('Top-up')
+
+      hr.no-margin.clear
+      table.rows(width="100%")
+        tr
+          td.right-align= __("Issuer:")
+          td
+            div
+              if (card.issuer[0] == 4)
+                div.inline-block.float-left.logo-card
+                  img.pad-right(src='/img/visa.jpg')
+                  span= __("Visa")
+              if (card.issuer[0] == 5)
+                div.inline-block.float-left.logo-card
+                  img.pad-right(src='/img/mastercard.jpg')
+                  span= __("MasterCard")
+        tr
+          td.right-align= __("Number:")
+          td= card.numberFormatted
+        tr
+          td.right-align= __("CVC:")
+          td= card.cvc
+        tr
+          td.right-align= __("Balance:")
+          td= card.balance + " " + card.currency
+        tr
+          td.right-align= __("Expires at:")
+          td= card.expires.date
+
+
+      a.btn.primary( href='#{cardPath}/deposit')= __('Deposit')

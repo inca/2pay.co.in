@@ -13,15 +13,15 @@ block main
             .ctl-row
               label
                 span= __("Old password")
-                input.field.focus(type="text", name="pwd[oldPassword]")
+                input.field.focus(type="password", name="pwd[oldPassword]")
             .ctl-row
               label
                 span= __("New password")
-                input.field.focus(type="text", name="pwd[newPassword]")
+                input.field.focus(type="password", name="pwd[newPassword]")
             .ctl-row
               label
                 span= __("Confirm new password")
-                input.field.focus(type="text",
+                input.field.focus(type="password",
                 name="pwd[confirmPassword]")
         p.centered
           button.btn.primary.large(type="submit")= __("Apply changes")
