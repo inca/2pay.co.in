@@ -27,6 +27,9 @@ block append main
           td.right-align= __("Number:")
           td= card.numberFormatted
         tr
+          td.right-align= __("Holder:")
+          td= card.holder.name + " " + card.holder.surname
+        tr
           td.right-align= __("CVC:")
           td= card.cvc
         tr

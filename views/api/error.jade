@@ -1,0 +1,18 @@
+extends ../user/layout
+
+block main
+  .frame
+    .paper.pad
+      if (!MerchantId)
+        p= __("You not enter Merchant id")
+      if (!PrivateKey)
+        p= __("You not enter Private Key")
+      else
+        if (!verify)
+          p= __("Entered Private Key is invalid")
+      if (!OrderId)
+        p= __("You not enter Order id")
+      if (!Amount)
+        p= __("You not enter Amount")
+      if (!Currency)
+        p= __("You not enter Currency")

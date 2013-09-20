@@ -19,7 +19,9 @@ var Merchant = mongoose.Schema({
   lastUsedAt: {
     type: Date,
     default: new Date()
-  }
+  },
+
+  pendingTransaction: []
 });
 
 Merchant.pre('save', function(next) {

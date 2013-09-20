@@ -40,7 +40,7 @@ app.delete('/card/:id', function(req, res, next){
 app.get('/card/:id/delete', function(req, res){
   if (!req.xhr) return res.send(404);
   res.render('card/delete');
-})
+});
 
 
 app.get('/card/:id/deposit', function(req, res, next){

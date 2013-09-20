@@ -23,6 +23,11 @@ var Card = mongoose.Schema({
     enum: ['400000', '500000']
   },
 
+  holder: {
+    name: String,
+    surname: String
+  },
+
   number: String,
 
   cvc: String,
@@ -75,6 +80,10 @@ Card.pre('save', function(next) {
   }
   num += ((10 - (sum % 10)).toString())%10;
   this.number = num;
+  var name = utils.randomIndex(40);
+  this.holder.name = conf.name[name];
+  var surname = utils.randomIndex(20);
+  this.holder.surname = conf.surname[surname];
   next();
 });
 

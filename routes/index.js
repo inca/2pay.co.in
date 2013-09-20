@@ -14,3 +14,4 @@ require('./merchants');
 require('./merchant');
 require('./card');
 require('./user');
+require('./api');

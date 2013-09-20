@@ -59,5 +59,21 @@
 	"Welcome to 2pay.co.in!": "Welcome to 2pay.co.in!",
 	"You have no cards under your control. Start by creating one.": "You have no cards under your control. Start by creating one.",
 	"Enter the numbers": "Enter the numbers",
-	"Limit has been exceeded.": "Limit has been exceeded."
+	"Limit has been exceeded.": "Limit has been exceeded.",
+	"You not enter Merchant id": "You not enter Merchant id",
+	"You not enter Private Key": "You not enter Private Key",
+	"You not enter Order id": "You not enter Order id",
+	"You not enter Amount": "You not enter Amount",
+	"You not enter Currency": "You not enter Currency",
+	"Entered Private Key is invalid": "Entered Private Key is invalid",
+	"Test pay": "Test pay",
+	"Please, choose pay card.": "Please, choose pay card.",
+	"Please, enter data of your pay card.": "Please, enter data of your pay card.",
+	"Enter number of your card": "Enter number of your card",
+	"Email or password is invalid.": "Email or password is invalid.",
+	"Card holder": "Card holder",
+	"": "",
+	"CVC": "CVC",
+	"Holder:": "Holder:",
+	"Pay": "Pay"
 }

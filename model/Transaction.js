@@ -2,12 +2,26 @@
 
 var mongoose = require('mongoose')
   , async = require("async")
-  , Card = require("../model/card");
+  , Card = require("../model/card")
+  , Merchant = require('../model/merchant');
 
 var Transaction = mongoose.Schema({
 
-  destination: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    require: true
+  },
+
+  merchant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Merchant",
+    require: true
+  },
+
+  card: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Card",
     require: true
   },
 
@@ -16,7 +30,11 @@ var Transaction = mongoose.Schema({
     require: true
   },
 
-  type: String,
+  kind:{
+    type:String,
+    enum: ["deposit", "pay", "withdraw"]
+
+  },
 
   state: {
     type: String,
@@ -25,45 +43,47 @@ var Transaction = mongoose.Schema({
 
 });
 
-Transaction.statics.txRun = function(desId, value, type) {
+Transaction.statics.txRun = function(merchantId, cardId, value, kind) {
 
   return function(cb){
     var tx = new exports({
       destination:desId,
-      type: type,
+      kind: kind,
       value: value,
       state: "pending"
-    })
+    });
     async.series([
 
       // Save transaction
 
       function(cb){
-        switch (tx.type){
-          case ("deposit"):
-            tx.save(cb);
-            break;
-          case ("pay"):
-            tx.value = -tx.value;
-            tx.save(cb);
-            break;
-          default:
-            cb(new Error(500));
-            break;
-        }
+        tx.save(cb);
       },
 
       // Apply Transaction to destination
 
       function(cb){
-        Card.findOne({_id:tx.destination, pendingTransaction:{$ne: tx._id}})
-          .exec(function(err, card){
-            console.log(card.pendingTransaction);
-            if (err) cb(err);
-            card.balance += tx.value;
-            card.pendingTransaction.push(tx._id);
-            card.save(cb);
-          })
+        switch (tx.kind){
+          case ("deposit"):
+            Card.findOne({_id:tx.destination, pendingTransaction:{$ne: tx._id}})
+              .exec(function(err, card){
+                console.log(card.pendingTransaction);
+                if (err) cb(err);
+                card.balance += tx.value;
+                card.pendingTransaction.push(tx._id);
+                card.save(cb);
+              });
+            break;
+          case ("pay"):
+            Card.findOne({_id:tx.destination, pendingTransaction:{$ne: tx._id}})
+              .exec(function(err, card){
+                console.log(card.pendingTransaction);
+                if (err) cb(err);
+                card.balance -= tx.value;
+                card.pendingTransaction.push(tx._id);
+                card.save();
+              });
+        }
       },
 
       // Set transaction committed
@@ -87,7 +107,7 @@ Transaction.statics.txRun = function(desId, value, type) {
       // Finish transaction
 
       function(cb){
-        tx.state = "done"
+        tx.state = "done";
         tx.save(cb);
       }
     ], cb)

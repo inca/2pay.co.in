@@ -37,3 +37,7 @@ exports.randomString = function(length, alphabet) {
 exports.randomNumber = function(length) {
   return exports.randomString(length, NUMERIC);
 };
+
+exports.randomIndex = function(length) {
+  return Math.floor(Math.random() * length);
+};
