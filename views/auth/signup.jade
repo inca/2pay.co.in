@@ -42,6 +42,28 @@ block form
                 type="text",
                 name="merchant[title]",
                 required='required')
+            .ctl-row
+              label
+                span= __("Merchant domain")
+                input.field(
+                type="text",
+                name="merchant[domain]",
+                value="http://",
+                required='required')
+            .ctl-row
+              label
+                span= __("Merchant success domain")
+                input.field(
+                type="text",
+                name="merchant[successDomain]",
+                required='required')
+            .ctl-row
+              label
+                span= __("Merchant error domain")
+                input.field(
+                type="text",
+                name="merchant[errorDomain]",
+                required='required')
 
         p.centered
           button.btn.primary.large(type="submit")= __("Sign up")

@@ -50,7 +50,7 @@ app.get('/card/:id/deposit', function(req, res, next){
 app.post('/card/:id/deposit', function(req, res, next){
   var value = req.param("deposit");
   if (value <= conf.depositLimit[req.card.currency]){
-    Transaction.txRun(req.card.id, value, "deposit")(function(err){
+    Transaction.txRun(null, null, req.card.id, value, "deposit")(function(err){
       if (err) return next(err);
       res.json({
         redirect: "/card/" + req.param("id")

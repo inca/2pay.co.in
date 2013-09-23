@@ -4,8 +4,17 @@ block main
   .frame(data-ref='#nav-summary')
     .paper.pad
       h1= merchant.title
-      p TODO add summary stuff
-
+      hr.no-margin.clear
+      table.rows(width="100%")
+        tr
+          td.right-align= __("Owner:")
+          td= merchant.user.name
+        tr
+          td.right-align= __("Private Key:")
+          td= merchant.privateKey
+        tr
+          td.right-align= __("Balance:")
+          td= merchant.balance
 
       a(href="#{merchantPath}/delete", rel="popup")
         span= __('Delete merchant')

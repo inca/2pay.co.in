@@ -3,12 +3,14 @@
 var app = require('../app')
   , Merchant = require('../model/merchant')
   , Card = require('../model/card')
+  , Transaction  = require('../model/transaction')
   , _ = require('underscore');
 
 app.all('/merchant/:id*', function(req, res, next) {
   if (!req.user)
     return res.redirect("login");
   Merchant.findOne({ _id: req.param('id'), user: req.user.id })
+    .populate("user")
     .exec(function(err, merchant) {
       if (err) return next(err);
       if (!merchant)
@@ -96,4 +98,14 @@ app.get('/merchant/:id/cards/new', function(req, res, next){
 
 app.get('/merchant/:id/edit', function(req, res, next){
   res.render('merchant/edit')
+});
+
+app.get('/merchant/:id/transactions', function(req, res, next){
+  Transaction.find({merchant:req.param("id")})
+    .populate("merchant")
+    .populate("card")
+    .exec(function(err, transactions){
+      if (err) return next(err);
+      res.render('merchant/transactions', {transactions: transactions})
+    })
 });

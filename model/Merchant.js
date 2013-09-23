@@ -21,6 +21,26 @@ var Merchant = mongoose.Schema({
     default: new Date()
   },
 
+  balance: {
+    type: Number,
+    default: 1000
+  },
+
+  domain: {
+    type: String,
+    required: true
+  },
+
+  successDomain: {
+    type: String,
+    required: true
+  },
+
+  errorDomain: {
+    type: String,
+    required: true
+  },
+
   pendingTransaction: []
 });
 

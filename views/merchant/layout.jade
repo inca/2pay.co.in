@@ -14,7 +14,7 @@ block content
     a#nav-edit(href="#{merchantPath}/edit")
       i.icon-edit-sign
       span= __("Settings")
-    a#nav-pay(href="/api/pay?MerchantId=#{merchant._id}&PrivateKey=#{merchant.privateKey}&OrderId=1&Amount=100&Currency=RUB")
+    a#nav-pay(href="/api/pay?MerchantId=#{merchant._id}&PrivateKey=#{merchant.privateKey}&OrderId=1&Cost=100&Currency=RUB")
       i.icon-credit-card
       span= __("Test pay")
 

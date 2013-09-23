@@ -1,0 +1,26 @@
+extends layout
+
+block main
+  .frame(data-ref='#nav-summary')
+    .paper.pad
+      if (transactions.length > 0)
+        table.sorted.rows(width='100%')
+          thead
+            tr
+              th.sorted= __('Merchant')
+              th.sorted
+              th.sorted= __('Card')
+              th.sorted= __('Value')
+          tbody
+            each tx in transactions
+              tr
+                td
+                  span= tx.merchant.title
+                td
+                  span= tx.kind
+                td
+                  span= tx.card.numberFormatted
+                td
+                  span= tx.value
+      else
+        p.kicker= __('This merchant does not have any transaction ')

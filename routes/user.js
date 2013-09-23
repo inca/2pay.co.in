@@ -32,7 +32,6 @@ app.get('/user/private-settings', function(req, res, next){
 });
 
 app.post('/user/private-settings', function(req, res, next){
-  console.log(req.body.pwd.newPassword, req.body.pwd.confirmPassword )
   if ((req.body.pwd.newPassword == req.body.pwd.confirmPassword) &&
     (req.user.password == req.body.pwd.oldPassword)){
     req.user.password = req.body.pwd.newPassword;

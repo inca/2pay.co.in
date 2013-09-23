@@ -5,7 +5,8 @@ block main
     .paper.pad
       h2= __("Please, enter data of your pay card.")
 
-      form.partial.no-overflow(method="post", action="/api/pay")
+      form.partial.no-overflow(method="post",
+      action="/api/pay?MerchantId=#{merchant._id}&PrivateKey=#{merchant.privateKey}&OrderId=1&Cost=100&Currency=RUB")
         span= __("Card number")
         .row
           .span-3
@@ -40,7 +41,7 @@ block main
                 required="required",
                 minlength="4",
                 maxlength="4")
-      span= __("Card holder")
+        span= __("Card holder")
         .row
           .span-3
             .ctl-row

@@ -75,5 +75,17 @@
 	"": "",
 	"CVC": "CVC",
 	"Holder:": "Holder:",
-	"Pay": "Pay"
+	"Pay": "Pay",
+	"Title:": "Title:",
+	"Private Key:": "Private Key:",
+	"Ouner:": "Ouner:",
+	"Owner:": "Owner:",
+	"Merchant": "Merchant",
+	"Card": "Card",
+	"Value": "Value",
+	"Unknown operation": "Unknown operation",
+	"This merchant does not have any transaction ": "This merchant does not have any transaction ",
+	"Merchant domain": "Merchant domain",
+	"Merchant success domain": "Merchant success domain",
+	"Merchant error domain": "Merchant error domain"
 }
