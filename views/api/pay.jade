@@ -8,67 +8,7 @@ block main
       form.partial.no-overflow(method="post",
       action="/api/pay?MerchantId=#{merchant._id}&PrivateKey=#{merchant.privateKey}&OrderId=1&Cost=100&Currency=RUB")
         span= __("Card number")
-        .row
-          .span-3
-            .ctl-row
-              input.field(
-                type="text",
-                name="card[number1]",
-                required="required",
-                minlength="4",
-                maxlength="4")
-          .span-3
-            .ctl-row
-              input.field(
-                type="text",
-                name="card[number2]",
-                required="required",
-                minlength="4",
-                maxlength="4")
-          .span-3
-            .ctl-row
-              input.field(
-                type="text",
-                name="card[number3]",
-                required="required",
-                minlength="4",
-                maxlength="4")
-          .span-3
-            .ctl-row
-              input.field(
-                type="text",
-                name="card[number4]",
-                required="required",
-                minlength="4",
-                maxlength="4")
-        span= __("Card holder")
-        .row
-          .span-3
-            .ctl-row
-              input.field(
-                type="text",
-                name="card[name]",
-                required="required")
-          .span-3
-            .ctl-row
-              input.field(
-                type="text",
-                name="card[surname]",
-                required="required")
-        span= __("Expires at")
-        .row
-          .span-3
-            .ctl-row
-              input.field(
-              type="text",
-              name="card[month]",
-              required="required")
-          .span-3
-            .ctl-row
-              input.field(
-              type="text",
-              name="card[year]",
-              required="required")
+
         span= __("CVC")
         .row
           .span-3

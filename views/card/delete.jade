@@ -4,6 +4,7 @@ p= __("Confirm deleting or cancelling")
 
 form.partial(method='delete', action='#{cardPath}')
   p.centered
-    a.btn.primary.close= __("Cancel")
-    span= __(" or ")
     button.btn.danger(type="submit")= __("Delete")
+    span= __(" or ")
+    a.close(href="javascript:;")= __("cancel")
+
